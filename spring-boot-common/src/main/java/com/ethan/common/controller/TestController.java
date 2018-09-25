@@ -3,7 +3,7 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.common;
+package com.ethan.common.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

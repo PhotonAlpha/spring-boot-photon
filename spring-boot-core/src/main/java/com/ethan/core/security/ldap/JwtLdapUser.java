@@ -3,7 +3,7 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.security.ldap;
+package com.ethan.core.security.ldap;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.ldap.userdetails.LdapUserDetails;

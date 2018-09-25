@@ -3,13 +3,13 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.service.impl;
+package com.ethan.core.service.impl;
 
-import com.ethan.constant.ServiceConstant;
-import com.ethan.dao.UserDao;
-import com.ethan.model.Users;
-import com.ethan.security.jwt.JwtUserFactory;
-import com.ethan.service.UserService;
+import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.dao.UserDao;
+import com.ethan.core.model.Users;
+import com.ethan.core.security.jwt.JwtUserFactory;
+import com.ethan.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.*;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,8 +29,6 @@ import java.util.List;
 public class UserServiceImpl implements UserDetailsService, UserService {
     @Autowired
     private UserDao userDao;
-    @Autowired
-    private LdapTemplate ldapTemplate;
 
     @Override
     public List<Users> getUsers() {

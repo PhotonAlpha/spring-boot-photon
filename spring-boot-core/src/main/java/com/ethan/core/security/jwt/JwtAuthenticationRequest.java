@@ -3,7 +3,7 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.security.jwt;
+package com.ethan.core.security.jwt;
 
 import lombok.Getter;
 import lombok.Setter;

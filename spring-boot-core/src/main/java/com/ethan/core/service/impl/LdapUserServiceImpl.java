@@ -3,13 +3,13 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.service.impl;
+package com.ethan.core.service.impl;
 
-import com.ethan.constant.ServiceConstant;
-import com.ethan.model.LdapUsers;
-import com.ethan.providers.UsersAttributesMapper;
-import com.ethan.security.jwt.JwtUserFactory;
-import com.ethan.service.UserService;
+import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.model.LdapUsers;
+import com.ethan.core.security.jwt.JwtUserFactory;
+import com.ethan.core.service.UserService;
+import com.ethan.core.providers.UsersAttributesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.LdapTemplate;

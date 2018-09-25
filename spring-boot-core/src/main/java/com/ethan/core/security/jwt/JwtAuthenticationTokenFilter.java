@@ -3,9 +3,9 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.security.jwt;
+package com.ethan.core.security.jwt;
 
-import com.ethan.constant.ServiceConstant;
+import com.ethan.core.constant.ServiceConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

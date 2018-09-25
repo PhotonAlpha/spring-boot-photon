@@ -3,8 +3,9 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.core;
+package com.ethan.common;
 
+import com.ethan.CommonApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -17,6 +18,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class ServletInitializer extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(CoreApplication.class);
+        return builder.sources(CommonApplication.class);
     }
 }

@@ -3,12 +3,12 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.security.jwt;
+package com.ethan.core.security.jwt;
 
-import com.ethan.model.Authoritys;
-import com.ethan.model.LdapUsers;
-import com.ethan.model.Users;
-import com.ethan.security.ldap.JwtLdapUser;
+import com.ethan.core.model.Authoritys;
+import com.ethan.core.model.Users;
+import com.ethan.core.security.ldap.JwtLdapUser;
+import com.ethan.core.model.LdapUsers;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
