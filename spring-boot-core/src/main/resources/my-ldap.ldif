@@ -1,0 +1,329 @@
+version: 1
+
+dn: dc=springframework,dc=org
+objectclass: extensibleObject
+objectclass: domain
+objectclass: top
+dc: springframework
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: dc=springframework,dc=org
+entryUUID: fd1e246a-145d-4768-accf-efd96df07510
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: ou=\"quoted people\",dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: "quoted people"
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=\"quoted people\",dc=springframework,dc=org
+entryUUID: 57f38a96-0de5-4ee6-8fc6-84cfd989e057
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: cn=quote\"guy,ou=\"quoted people\",dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: quote\"guy
+cn: quote"guy
+sn: Quote
+uid: quoteguy
+userPassword: quoteguyspassword
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=quote\"guy,ou=\"quoted people\",dc=springframework,dc=org
+entryUUID: 0ed52612-3ee0-493c-88ba-f0daea0d5c50
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: ou=groups,dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: groups
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=groups,dc=springframework,dc=org
+entryUUID: 51b1bd4c-9ffc-408e-882f-845c23fbdabd
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: cn=checker,ou=groups,dc=springframework,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: checker
+uniqueMember: uid=ben,ou=people,dc=springframework,dc=org
+uniqueMember: uid=bob,ou=people,dc=springframework,dc=org
+uniqueMember: uid=ethan,ou=people,dc=springframework,dc=org
+uniqueMember: uid=savaj,ou=people,dc=springframework,dc=org
+uniqueMember: uid=wang,ou=people,dc=springframework,dc=org
+ou: developer
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=checker,ou=groups,dc=springframework,dc=org
+entryUUID: 12b2c833-5d00-446e-8c9f-061ace0e5eb1
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924074847.852Z
+subschemaSubentry: cn=schema
+
+dn: cn=inquirer,ou=groups,dc=springframework,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: inquirer
+uniqueMember: uid=ben,ou=people,dc=springframework,dc=org
+uniqueMember: uid=bob,ou=people,dc=springframework,dc=org
+uniqueMember: uid=ethan,ou=people,dc=springframework,dc=org
+uniqueMember: uid=savaj,ou=people,dc=springframework,dc=org
+uniqueMember: uid=wang,ou=people,dc=springframework,dc=org
+ou: developer
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=developers,ou=groups,dc=springframework,dc=org
+entryUUID: 12b2c833-5d00-446e-8c9f-061ace0e5eb1
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924074846.083Z
+subschemaSubentry: cn=schema
+
+dn: cn=marker,ou=groups,dc=springframework,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: marker
+uniqueMember: uid=ben,ou=people,dc=springframework,dc=org
+uniqueMember: cn=mouse\, jerry,ou=people,dc=springframework,dc=org
+uniqueMember: uid=ethan,ou=people,dc=springframework,dc=org
+uniqueMember: uid=wang,ou=people,dc=springframework,dc=org
+uniqueMember: uid=savaj,ou=people,dc=springframework,dc=org
+ou: manager
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=marker,ou=groups,dc=springframework,dc=org
+entryUUID: 1fc91107-51ee-4f42-b1b2-09fe1efdbc41
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924074841.615Z
+subschemaSubentry: cn=schema
+
+dn: ou=subgroups,ou=groups,dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: subgroups
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=subgroups,ou=groups,dc=springframework,dc=org
+entryUUID: 0e8c4511-26b2-42b4-9b28-4f3a5df4aa33
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: cn=submanagers,ou=subgroups,ou=groups,dc=springframework,dc=org
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: submanagers
+uniqueMember: uid=ben,ou=people,dc=springframework,dc=org
+ou: submanager
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=submanagers,ou=subgroups,ou=groups,dc=springframework,dc=org
+entryUUID: 43dc3824-d73c-4002-bc61-e113f03a2f7c
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: ou=otherpeople,dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: otherpeople
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=otherpeople,dc=springframework,dc=org
+entryUUID: 78469af5-8ea9-4971-bcbb-ab44df456c3c
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: uid=joe,ou=otherpeople,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Joe Smeth
+sn: Smeth
+uid: joe
+userPassword: joespassword
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=joe,ou=otherpeople,dc=springframework,dc=org
+entryUUID: 1ea2c915-1467-472a-80d5-9ffb2c696a5c
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: ou=people,dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: people
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=people,dc=springframework,dc=org
+entryUUID: f6f5047a-40fa-4fee-9fad-a229f96748cc
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: cn=mouse\, jerry,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Mouse, Jerry
+sn: Mouse
+uid: jerry
+userPassword: jerryspassword
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=mouse\, jerry,ou=people,dc=springframework,dc=org
+entryUUID: 6cfe4fdd-e145-41a0-8930-0b1ced936f14
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: cn=slash/guy,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: slash/guy
+sn: Slash
+uid: slashguy
+userPassword: slashguyspassword
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: cn=slash/guy,ou=people,dc=springframework,dc=org
+entryUUID: 9d8c99ec-9f75-4dc7-ad43-f808f9417a35
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: uid=ben,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Ben Alex
+sn: Alex
+uid: ben
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=ben,ou=people,dc=springframework,dc=org
+entryUUID: 756bce29-3fee-4700-9f62-2fed2cf3c846
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924063258.071Z
+subschemaSubentry: cn=schema
+
+dn: uid=bob,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Bob Hamilton
+sn: Hamilton
+uid: bob
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=bob,ou=people,dc=springframework,dc=org
+entryUUID: 862d4cac-8381-4553-ad75-aac41c16e6ef
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924063132.148Z
+subschemaSubentry: cn=schema
+
+dn: uid=ethan,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Cao Qiang
+sn: Cao
+mail: a@gmail.com
+uid: ethan
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=ben,ou=people,dc=springframework,dc=org
+entryUUID: 756bce29-3fee-4700-9f62-2fed2cf3c846
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924063554.391Z
+subschemaSubentry: cn=schema
+
+dn: uid=savaj,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Savaj
+sn: S
+mail: s@gmail.com
+uid: savaj
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=ben,ou=people,dc=springframework,dc=org
+entryUUID: 756bce29-3fee-4700-9f62-2fed2cf3c846
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924063814.557Z
+subschemaSubentry: cn=schema
+
+dn: uid=wang,ou=people,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Wang Dong
+sn: Wang
+mail: w@gmail.com
+uid: wang
+userPassword: {SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=ben,ou=people,dc=springframework,dc=org
+entryUUID: 756bce29-3fee-4700-9f62-2fed2cf3c846
+modifiersName: uid=admin,ou=system
+modifyTimestamp: 20180924063638.658Z
+subschemaSubentry: cn=schema
+
+dn: ou=space cadets,dc=springframework,dc=org
+objectclass: organizationalUnit
+objectclass: top
+ou: space cadets
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: ou=space cadets,dc=springframework,dc=org
+entryUUID: 2a52ca80-8fb3-43a3-8649-0a3b77a04ecf
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+
+dn: uid=space cadet,ou=space cadets,dc=springframework,dc=org
+objectclass: inetOrgPerson
+objectclass: organizationalPerson
+objectclass: person
+objectclass: top
+cn: Space Cadet
+sn: Cadet
+uid: space cadet
+userPassword: spacecadetspassword
+createTimestamp: 20180924063040.930Z
+creatorsName: cn=Internal Root User
+entryDN: uid=space cadet,ou=space cadets,dc=springframework,dc=org
+entryUUID: 641a6555-05b8-4050-86c2-790b6cd6606a
+modifiersName: cn=Internal Root User
+modifyTimestamp: 20180924063040.930Z
+subschemaSubentry: cn=schema
+

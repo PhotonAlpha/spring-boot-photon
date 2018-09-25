@@ -1,0 +1,39 @@
+spring:
+  h2:
+    console:
+      enabled: @core.h2.enabled@
+      path: @core.h2.path@
+  datasource:
+    url: @core.datasource.url@
+    driver-class-name: @core.datasource.driver-class-name@
+    username: @core.datasource.username@
+    password: @core.datasource.password@
+  jpa:
+    hibernate:
+      ddl-auto: @core.datasource.ddl.auto@
+    database-platform: @core.datasource.platform@
+    show-sql: true
+  ldap:
+    urls: @core.ldap.urls@
+    username: @core.ldap.username@
+    password: @core.ldap.password@
+    base: @core.ldap.base@
+    embedded:
+      ldif: @core.ldap.embedded.ldif@
+      port: @core.ldap.embedded.port@
+      credential:
+        username: @core.ldap.embedded.username@
+        password: @core.ldap.embedded.password@
+      base-dn: @core.ldap.embedded.base-dn@
+      validation:
+        enabled: @core.ldap.embedded.validation@
+
+
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 60000
+
+server:
+  port: 8080

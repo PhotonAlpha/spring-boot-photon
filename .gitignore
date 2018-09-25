@@ -1,0 +1,12 @@
+
+angular-client/\.vscode/
+
+angular-client/dist/
+
+logs/
+
+spring-boot-client/target/
+
+spring-boot-common/target/
+
+spring-boot-core/target/
