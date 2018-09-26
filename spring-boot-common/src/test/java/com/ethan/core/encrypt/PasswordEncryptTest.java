@@ -5,7 +5,7 @@
  */
 package com.ethan.core.encrypt;
 
-import com.ethan.config.WebSecurityConfiguration;
+import com.ethan.core.config.WebSecurityConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

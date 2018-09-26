@@ -6,8 +6,8 @@
 package com.ethan.core.encrypt;
 
 import com.ethan.CommonApplication;
-import com.ethan.constant.ServiceConstant;
-import com.ethan.service.UserService;
+import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

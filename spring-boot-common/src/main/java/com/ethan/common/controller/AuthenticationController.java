@@ -5,11 +5,11 @@
  */
 package com.ethan.common.controller;
 
-import com.ethan.constant.ServiceConstant;
-import com.ethan.security.jwt.JwtAuthenticationRequest;
-import com.ethan.security.jwt.JwtTokenDto;
-import com.ethan.security.jwt.JwtTokenUtils;
-import com.ethan.security.jwt.JwtUser;
+import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.security.jwt.JwtAuthenticationRequest;
+import com.ethan.core.security.jwt.JwtTokenDto;
+import com.ethan.core.security.jwt.JwtTokenUtils;
+import com.ethan.core.security.jwt.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

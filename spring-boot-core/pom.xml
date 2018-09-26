@@ -9,9 +9,11 @@
         <version>2.0.3.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>war</packaging>
-    <version>1.0.0.RELEASE</version>
+    <groupId>com.ethan</groupId>
     <artifactId>spring-boot-core</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <packaging>jar</packaging>
+
 
     <properties>
         <jwt.version>0.9.1</jwt.version>

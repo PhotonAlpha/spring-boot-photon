@@ -7,7 +7,6 @@ package com.ethan.core.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.ldap.odm.annotations.Id;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
