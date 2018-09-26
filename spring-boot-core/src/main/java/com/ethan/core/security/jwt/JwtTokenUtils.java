@@ -5,6 +5,7 @@
  */
 package com.ethan.core.security.jwt;
 
+import com.ethan.core.security.ldap.JwtLdapUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -121,7 +122,7 @@ public class JwtTokenUtils {
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
-        JwtUser user = (JwtUser) userDetails;
+        JwtLdapUser user = (JwtLdapUser) userDetails;
         final String username = getUsernameFromToken(token);
         // final Date createDate = getIssuedAtDateFromToken(token);
         return (username.equals(user.getUsername())

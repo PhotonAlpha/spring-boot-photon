@@ -14,4 +14,8 @@ package com.ethan.core.constant;
 public class ServiceConstant {
     public final static String LDAP_SERVICE = "ldapUserImpl";
     public final static String DB_SERVICE = "dbUserImpl";
+
+    public final static String CACHE_DIRECTORY = "directory";
+    public final static String CACHE_THREAD = "threads";
+    public final static String CACHE_INSTRUMENT = "instruments";
 }
