@@ -49,3 +49,10 @@ sn：surname（姓氏）
 cn：common name（常用名称）
 sAMAccountName:英文名(RTX账号,唯一)
 userPrincipalName:登陆用户名 和 英文名一致
+
+
+https://github.com/guyoung/angular6-webpack4-quickstart
+
+https://blog.angularindepth.com/upgrading-a-project-without-cli-to-angular-6-b07b105adc02
+
+https://github.com/PhotonAlpha/photonalpha.github.io/blob/master/Portal/webpack.config.js
