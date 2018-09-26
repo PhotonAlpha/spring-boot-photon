@@ -37,5 +37,8 @@ jwt:
 
 server:
   port: 8080
-  servlet:
-    context-path: /spring-server
+#  servlet:
+#    context-path: /spring-server
+
+swagger2:
+  enable: true

@@ -38,7 +38,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
+    private static final String[] AUTH_WHITELIST = {
+            // -- swagger ui
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/webjars/**"
+    };
     @Bean
     public UnAuthenticationEntryPoint unAuthenticationEntryPoint() {
         return new UnAuthenticationEntryPoint();
@@ -67,6 +73,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     "/**/*.js").permitAll()
             .antMatchers("/api/auth").permitAll()
             .antMatchers("/h2-console/**").permitAll()
+            .antMatchers(AUTH_WHITELIST).permitAll()
             .anyRequest().authenticated();
         // providers
         http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
