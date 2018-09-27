@@ -14,10 +14,15 @@ spring:
     database-platform: @core.datasource.platform@
     show-sql: true
   ldap:
-    urls: @core.ldap.urls@
+    urls:
+    - @core.ldap.url1@
+    - @core.ldap.url2@
     username: @core.ldap.username@
     password: @core.ldap.password@
     base: @core.ldap.base@
+    timeout: @core.ldap.timeout@
+    ssl: @core.ldap.ssl@
+    referral: @core.ldap.referral@
     embedded:
       ldif: @core.ldap.embedded.ldif@
       port: @core.ldap.embedded.port@

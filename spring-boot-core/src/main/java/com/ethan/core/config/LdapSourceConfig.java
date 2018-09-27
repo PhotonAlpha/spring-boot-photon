@@ -8,11 +8,10 @@ package com.ethan.core.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 
-import javax.naming.ldap.LdapContext;
+import java.util.HashMap;
 
 /**
  * @program: spring-boot
@@ -23,15 +22,21 @@ import javax.naming.ldap.LdapContext;
 @Configuration
 public class LdapSourceConfig {
     @Autowired
-    private Environment environment;
+    private LdapConfig ldapConfig;
 
     @Bean
     public LdapContextSource ldapContextSource() {
+        HashMap<String, Object> baseEnv = new HashMap<String, Object>();
+        baseEnv.put("com.sun.jndi.ldap.connect.timeout", ldapConfig.getTimeout());
+
         LdapContextSource contextSource = new LdapContextSource();
-        contextSource.setUrl(environment.getRequiredProperty("spring.ldap.urls"));
-        contextSource.setBase(environment.getRequiredProperty("spring.ldap.base"));
-        contextSource.setUserDn(environment.getRequiredProperty("spring.ldap.username"));
-        contextSource.setPassword(environment.getRequiredProperty("spring.ldap.password"));
+        contextSource.setUrls(ldapConfig.getUrls());
+        contextSource.setBase(ldapConfig.getBase());
+        contextSource.setUserDn(ldapConfig.getUsername());
+        contextSource.setPassword(ldapConfig.getPassword());
+        contextSource.setReferral(ldapConfig.getReferral());
+        contextSource.setBaseEnvironmentProperties(baseEnv);
+        contextSource.afterPropertiesSet();
         return contextSource;
     }
 

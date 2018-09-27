@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.naming.NamingException;
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -60,6 +61,14 @@ public class LdapUserServiceImpl implements UserDetailsService, UserService {
                 .where("objectClass").is("groupOfUniqueNames")
                 .and("uniqueMember").is(ldapuser.getDn());
         List<String> roles = ldapTemplate.search(roleQuery, (AttributesMapper<String>) attrs -> (String) attrs.get("cn").get());
+        try {
+            System.out.println("--------------");
+            ldapTemplate.getContextSource().getReadOnlyContext().getEnvironment()
+                    .entrySet().stream()
+                    .forEach(key -> System.out.println(key.getKey()+":"+key.getValue()));
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
         if (ldapuser != null) {
             if (roles != null && !roles.isEmpty()) {
                 ldapuser.setAuthorities(roles);

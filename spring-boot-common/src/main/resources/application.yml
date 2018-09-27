@@ -14,10 +14,15 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
   ldap:
-    urls: ldap://localhost:8389
+    urls:
+    - ldap://localhost:10389
+    - ldap://localhost:8389
     username: uid=admin,ou=system
     password: password
     base: dc=springframework,dc=org
+    timeout: 100
+    ssl: no
+    referral: follow
     embedded:
       ldif: classpath:my-ldap.ldif
       port: 8389
