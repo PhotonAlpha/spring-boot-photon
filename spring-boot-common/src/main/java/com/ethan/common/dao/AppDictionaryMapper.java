@@ -11,9 +11,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @program: aisp
+ * @program: spring-boot
  * @description: TODO
- * @author: qiang.caocq@ncs.com.sg
+ * @author: 411084090@qq.com
  * @creat_date: 2018-09-29 23:21
  **/
 public interface AppDictionaryMapper {

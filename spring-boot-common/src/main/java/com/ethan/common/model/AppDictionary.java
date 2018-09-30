@@ -12,9 +12,9 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 
 /**
- * @program: aisp
+ * @program: spring-boot
  * @description: TODO
- * @author: qiang.caocq@ncs.com.sg
+ * @author: 411084090@qq.com
  * @creat_date: 2018-09-29 22:54
  **/
 @Entity
