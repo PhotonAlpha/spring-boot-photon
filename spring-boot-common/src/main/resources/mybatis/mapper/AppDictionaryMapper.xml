@@ -27,6 +27,12 @@
         from dictionary dic
     </select>
 
+    <select id="findKeyByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"><property name="alias" value="dic"/></include>
+        from dictionary dic
+    </select>
+
     <!--auto generated Code-->
     <insert id="insert" parameterType="com.ethan.common.model.AppDictionary" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO dictionary (
@@ -53,6 +59,7 @@
     <delete id="delete" >
         delete from dictionary where id = #{id}
     </delete>
+
 
     <!--<insert id="insertList">-->
         <!--INSERT INTO dictionary (-->

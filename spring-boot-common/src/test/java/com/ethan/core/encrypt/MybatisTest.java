@@ -8,6 +8,7 @@ package com.ethan.core.encrypt;
 import com.ethan.CommonApplication;
 import com.ethan.common.model.AppDictionary;
 import com.ethan.common.service.ConfigService;
+import com.ethan.core.model.Pagination;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,11 @@ public class MybatisTest {
 
         AppDictionary dicold = configService.getOne(1L);
         System.out.println(dicold);
+
+        Pagination page = new Pagination();
+        page = configService.findKeyByPage(page);
+        System.out.println("page>>>>>>>>>>");
+        System.out.println(page);
 
         List<AppDictionary> result = configService.getAll();
         System.out.println(result);

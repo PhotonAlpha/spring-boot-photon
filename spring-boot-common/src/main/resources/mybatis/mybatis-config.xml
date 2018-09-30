@@ -24,11 +24,11 @@
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
     </typeAliases>
-    <!--<plugins>-->
-        <!--<plugin interceptor="com.aisp.core.providers.CustomAuthenticationProvider">-->
-            <!--<property name="limit" value="10"/>-->
-            <!--<property name="dbType" value="mysql"/>-->
-        <!--</plugin>-->
-    <!--</plugins>-->
+    <plugins>
+        <plugin interceptor="com.ethan.core.providers.PageInterceptor">
+            <property name="limit" value="10"/>
+            <property name="dbType" value="mysql"/>
+        </plugin>
+    </plugins>
 
 </configuration>

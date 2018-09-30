@@ -26,4 +26,8 @@ public class Pagination {
     private boolean isPage=false;
     private Collection<?> results;
 
+    public int getTotalPage() {
+        int count = (totalCount % pageSize > 0) ? (totalCount / pageSize + 1) : (totalCount / pageSize);
+        return count;
+    }
 }

@@ -9,6 +9,7 @@ import com.ethan.common.dao.AppDictionaryMapper;
 import com.ethan.common.model.AppDictionary;
 import com.ethan.common.service.ConfigService;
 import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.model.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -82,5 +83,16 @@ public class ConfigServiceImpl implements ConfigService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Pagination findKeyByPage(Pagination pagination) {
+        pagination = new Pagination();
+        pagination.setPage(true);
+        pagination.setPageSize(2);
+        pagination.setCurrPage(2);
+        List<AppDictionary> results = dictionaryMapper.findKeyByPage(pagination);
+        pagination.setResults(results);
+        return pagination;
     }
 }
