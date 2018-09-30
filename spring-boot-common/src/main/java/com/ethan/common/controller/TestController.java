@@ -24,17 +24,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "Test Controller for Vlue", description = "description the controller usage", tags = "Test Control Tag")
 public class TestController extends BasicController{
     @Autowired
-    private ConfigService svc;
+    private ConfigService configService;
 
     @ApiOperation(value = "accross name get value")
     @GetMapping(value = "/test/{name}")
     public ResponseEntity<?> getData(@PathVariable("name") String name) {
-        return ResponseEntity.ok(svc.play(1L, name, "show"));
+        return ResponseEntity.ok(configService.play(1L, name, "show"));
     }
     @ApiOperation(value = "accross content get value")
     @GetMapping(value = "/content/{name}")
     public ResponseEntity<?> getContent(@PathVariable("name") String name) {
-        return ResponseEntity.ok(svc.put(name));
+        return ResponseEntity.ok(configService.put(name));
     }
 
 }

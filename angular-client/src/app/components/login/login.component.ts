@@ -1,10 +1,10 @@
-import { AppConfigs } from './../app-config.module';
-import { MessageService } from '../utils/injector/message.service';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../service/login.service';
-import { Pagination } from '../models/applications';
 import { Users, Tokens } from 'src/app/models/users';
 import { Router } from '@angular/router';
+import { Pagination } from 'src/app/models/applications';
+import { MessageService } from 'src/app/utils/injector/message.service';
+import { LoginService } from 'src/app/service/login.service';
+import { AppConfigs } from 'src/app/app-config.module';
 
 @Component({
     selector: 'app-login',

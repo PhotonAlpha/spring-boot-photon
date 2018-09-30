@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class AppConfigs {
     public static readonly token_key = 'ethon.1';
+    public static readonly refresh_token_key = 'ethon.1.r';
 
     public static readonly API_BASE = `${environment.apiUrl}/v1`;
     public static readonly AUTH_URL = `${environment.apiUrl}/api/auth`;

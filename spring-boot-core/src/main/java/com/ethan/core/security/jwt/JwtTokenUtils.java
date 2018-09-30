@@ -106,6 +106,21 @@ public class JwtTokenUtils {
         claims.put("role", roles);
         return doGenerateToken(claims, userDetails.getUsername(), generateAudience(device));
     }
+    public String generateRefreshToken(UserDetails userDetails, Device device) {
+        Map<String, Object> claims = new HashMap<>();
+        final Date createdDate = now();
+        final LocalDateTime localTime = createdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime expirationTime = localTime.plusSeconds(expiration * 5);
+        final Date expirationDate = Date.from(expirationTime.atZone(ZoneId.systemDefault()).toInstant());
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setAudience(generateAudience(device))
+                .setIssuedAt(createdDate)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
+    }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
         final Date createdDate = now();
@@ -139,6 +154,10 @@ public class JwtTokenUtils {
         final Date createDate = getIssuedAtDateFromToken(token);
         return !isCreatedBeforeLastPasswordReset(createDate, lastPasswordReset)
                 && (!isTokenExpired(token) || ignoreTokenExpiration(token));
+    }
+    public boolean canTokenBeRefreshed(String token) {
+        final Date createDate = getIssuedAtDateFromToken(token);
+        return !isTokenExpired(token);
     }
 
     public String refreshToken(String token) {

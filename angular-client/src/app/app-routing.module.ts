@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { MainPortalComponent } from './components/main/main-portal.component';
-import { HeaderComponent } from './components/header/herder.component';
-import { PortalDeactiveGuard } from 'src/app/utils/guard/deactive-guard.service';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
   {path: 'welcome', component: LoginComponent },
   {
-    path: 'main', component: MainPortalComponent,
+    path: 'main', component: MainComponent,
     children: [
-      { path: 'header', component: HeaderComponent, canDeactivate: [PortalDeactiveGuard]}
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard', loadChildren: '../app/routings/dashboard.module#DashboardModule',
+      },
+      {
+        path: 'reports', loadChildren: '../app/routings/reports.module#ReportsModule',
+      }
     ]
   }
 ];

@@ -5,6 +5,8 @@
  */
 package com.ethan.common.service;
 
+import com.ethan.common.model.AppDictionary;
+
 import java.util.List;
 
 /**
@@ -17,4 +19,10 @@ public interface ConfigService {
     String play(Long appId, String type, String operator);
 
     List<String> put(String content);
+
+    AppDictionary getOne(Long id);
+    List<AppDictionary> getAll();
+    boolean insertDic(AppDictionary entity);
+    boolean updateDic(AppDictionary entity);
+    boolean deleteDic(Long id);
 }

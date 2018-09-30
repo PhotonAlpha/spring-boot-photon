@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.AppDictionaryMapper">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.ethan.common.model.AppDictionary">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="key" property="key" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        ${alias}.id, ${alias}.key, ${alias}.value, ${alias}.group_name
+    </sql>
+
+    <select id="getOne" resultMap="BaseResultMap" parameterType="map">
+        select
+          <include refid="Base_Column_List"><property name="alias" value="dic"/></include>
+        from dictionary dic
+        where dic.id = #{id}
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap" >
+        select
+          <include refid="Base_Column_List"><property name="alias" value="dic"/></include>
+        from dictionary dic
+    </select>
+
+    <!--auto generated Code-->
+    <insert id="insert" parameterType="com.ethan.common.model.AppDictionary" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dictionary (
+            key,
+            value,
+            group_name
+        ) VALUES (
+            #{key},
+            #{value},
+            #{groupName}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.ethan.common.model.AppDictionary">
+        UPDATE dictionary
+        <set>
+            <if test="key != null"> key= #{key,jdbcType=VARCHAR},</if>
+            <if test="value != null"> value= #{value,jdbcType=VARCHAR},</if>
+            <if test="groupName != null"> group_name= #{groupName,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <delete id="delete" >
+        delete from dictionary where id = #{id}
+    </delete>
+
+    <!--<insert id="insertList">-->
+        <!--INSERT INTO dictionary (-->
+            <!--id,-->
+            <!--key,-->
+            <!--value,-->
+            <!--group_name-->
+        <!--)VALUES-->
+        <!--<foreach collection="appDictionarys" item="appDictionary" index="index" separator=",">-->
+            <!--(-->
+            <!--#{appDictionary.id,jdbcType=BIGINT},-->
+            <!--#{appDictionary.key,jdbcType=VARCHAR},-->
+            <!--#{appDictionary.value,jdbcType=VARCHAR},-->
+            <!--#{appDictionary.groupName,jdbcType=VARCHAR}-->
+            <!--)-->
+        <!--</foreach>-->
+    <!--</insert>-->
+
+</mapper>
+
