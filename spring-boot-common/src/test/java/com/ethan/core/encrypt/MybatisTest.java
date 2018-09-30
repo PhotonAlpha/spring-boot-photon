@@ -18,9 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 /**
- * @program: aisp
+ * @program: spring-boot
  * @description: TODO
- * @author: qiang.caocq@ncs.com.sg
+ * @author: 411084090@qq.com
  * @creat_date: 2018-09-30 01:24
  **/
 @RunWith(SpringRunner.class)
