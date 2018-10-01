@@ -24,3 +24,9 @@ includes
     * Junit Test
     * Mybatis & Interceptor Pagination
 
+* ### TODO
+    * quartz 
+    * Memcached custer
+    * redis
+    * netty
+
