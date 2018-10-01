@@ -2,9 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
 
-## Development server
+# Build & Package
+## Build into WAR
+1. Run `ng build --base-href=/<context-root>/ --prod` or `ng build --base-href=/<context-root>/ -c <env>`. `<context-root>` should be the same value given in the `finalName` field specified in `pom.xml`. Its value is `portal` now. `<env>` can be `dev`, `sit`, `prod` and other values in the future.
+2. Run `mvn clean package`. It will give you a `<app-name>.war` package under `target` folder.
+3. Deploy this war into Tomcat or other Web/Application servers.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Terminology
+- Environment
+    + local: your local machine
+    + dev: NCS dev server, where MSSQL & WebLogic server is installed
+    + sit: GAIC SIT environment
+
+# Coding Guideline
+1. All inputs, buttons should have `id` attribute.
 
 ## Code scaffolding
 

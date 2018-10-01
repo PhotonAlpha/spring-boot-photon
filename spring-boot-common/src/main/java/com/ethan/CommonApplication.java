@@ -5,6 +5,7 @@
  */
 package com.ethan;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,6 +19,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
+@MapperScan(basePackages = {"com.ethan.common.dao"})
 public class CommonApplication {
     public static void main(String[] args) {
         SpringApplication.run(CommonApplication.class, args);

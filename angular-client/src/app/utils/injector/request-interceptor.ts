@@ -6,13 +6,15 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent,
 import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { OverviewDialogComponent } from 'src/app/components/dialog/overview-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
     isRefreshingToken: boolean = false;
     tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-    constructor(private injector: Injector, private router: Router) {
+    constructor(private injector: Injector, private router: Router, private dialog: MatDialog) {
     }
 
     addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
@@ -27,7 +29,10 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     // tslint:disable-next-line:max-line-length
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-        const token = localStorage.getItem(AppConfigs.token_key);
+        let token = localStorage.getItem(AppConfigs.token_key);
+        if (this.isRefreshingToken) {
+            token = localStorage.getItem(AppConfigs.refresh_token_key);
+        }
 
         return next.handle(this.addToken(req, token))
             .pipe(
@@ -39,8 +44,10 @@ export class HttpInterceptorService implements HttpInterceptor {
                                 return this.handle400Error(error);
                             case 401:
                                 return this.handle401Error(req, next);
+                            case 500:
+                                return this.handle500Error(error);
                             default:
-                                return throwError(error);
+                                this.handleDefaultError(error);
                         }
                     } else {
                         return throwError(error);
@@ -59,7 +66,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     handle401Error(req: HttpRequest<any>, next: HttpHandler) {
         if (!this.isRefreshingToken) {
             this.isRefreshingToken = true;
-            //reset
+            // reset
             this.tokenSubject.next(null);
             const authService = this.injector.get(LoginService);
             return authService.getRefreshToken().pipe(
@@ -87,6 +94,38 @@ export class HttpInterceptorService implements HttpInterceptor {
                 })
             );
         }
+    }
+
+    handle500Error(error) {
+        this.dialog.open(OverviewDialogComponent, {
+            disableClose: true,
+            'data': {
+                title: 'Login Error!',
+                message: [`${error.status} - ${error.error.error} - ${error.error.message}`],
+                conform: 'Confirm' ,
+                cancel: 'cancel'
+            }
+        });
+        return throwError(error);
+    }
+
+    handleDefaultError(error) {
+        // if (error) {
+        //     this.router.navigate(['/login']);
+        // }
+        this.dialog.open(OverviewDialogComponent, {
+            disableClose: true,
+            'data': {
+                title: 'Login Error!',
+                message: [`${error.status} - ${error.error.error} - ${error.error.message}`],
+                conform: 'Confirm' ,
+                cancel: 'cancel'
+            }
+        }).afterClosed().subscribe(temp => {
+            localStorage.clear();
+            this.dialog.closeAll();
+            this.router.navigate(['login']);
+        });
     }
 
     logoutUser() {

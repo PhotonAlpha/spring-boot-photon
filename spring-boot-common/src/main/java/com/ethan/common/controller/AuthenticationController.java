@@ -10,6 +10,7 @@ import com.ethan.core.security.jwt.JwtAuthenticationRequest;
 import com.ethan.core.security.jwt.JwtTokenDto;
 import com.ethan.core.security.jwt.JwtTokenUtils;
 import com.ethan.core.security.jwt.JwtUser;
+import com.ethan.core.security.ldap.JwtLdapUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,20 +54,25 @@ public class AuthenticationController {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, device);
-        return ResponseEntity.ok(new JwtTokenDto(token));
+        final String refreshToken = jwtTokenUtil.generateRefreshToken(userDetails, device);
+        return ResponseEntity.ok(new JwtTokenDto(token, refreshToken));
     }
 
     @GetMapping(value = "/refresh")
-    public ResponseEntity<?> refreshToken(HttpServletRequest request) {
-        final String token = request.getHeader(tokenHeader);
-        final String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
-            String refreshToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(refreshToken);
-        } else {
-            return ResponseEntity.badRequest().body("Token maybe expired.");
+    public ResponseEntity<?> refreshToken(HttpServletRequest request, Device device) {
+        final String requestHeader = request.getHeader(tokenHeader);
+        System.out.println("requestHeader" + requestHeader);
+        if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
+            final String token = requestHeader.substring(7);
+            final String username = jwtTokenUtil.getUsernameFromToken(token);
+            JwtLdapUser user = (JwtLdapUser) userDetailsService.loadUserByUsername(username);
+            if (jwtTokenUtil.canTokenBeRefreshed(token)) {
+                String refreshToken = jwtTokenUtil.refreshToken(token);
+                final String newToken = jwtTokenUtil.generateToken(user, device);
+                return ResponseEntity.ok(new JwtTokenDto(newToken, refreshToken));
+            }
         }
+        return ResponseEntity.badRequest().body("Token maybe expired.");
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)

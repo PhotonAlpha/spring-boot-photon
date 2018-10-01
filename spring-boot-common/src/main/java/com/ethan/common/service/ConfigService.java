@@ -5,6 +5,9 @@
  */
 package com.ethan.common.service;
 
+import com.ethan.common.model.AppDictionary;
+import com.ethan.core.model.Pagination;
+
 import java.util.List;
 
 /**
@@ -17,4 +20,12 @@ public interface ConfigService {
     String play(Long appId, String type, String operator);
 
     List<String> put(String content);
+
+    AppDictionary getOne(Long id);
+    List<AppDictionary> getAll();
+
+    Pagination findKeyByPage(Pagination pagination);
+    boolean insertDic(AppDictionary entity);
+    boolean updateDic(AppDictionary entity);
+    boolean deleteDic(Long id);
 }

@@ -1,13 +1,13 @@
 import { CanDeactivate } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-    selector: 'app-herder',
-    templateUrl: './herder.component.html',
-    styleUrls: ['./herder.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
     theamClassName: string;
     options: FormGroup;
     constructor(fb: FormBuilder) {
@@ -17,7 +17,13 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        console.log('ngOnInit');
+    }
+
+    ngOnDestroy(): void {
+        console.log('ngOnDestroy');
+    }
 
     lightTheam() {
         this.theamClassName = '';
