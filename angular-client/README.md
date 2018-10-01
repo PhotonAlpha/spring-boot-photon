@@ -12,11 +12,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build -base` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
 1. Run `ng build --base-href=/<context-root>/ --prod` or `ng build --base-href=/<context-root>/ -c <env>`. `<context-root>` should be the same value given in the `finalName` field specified in `pom.xml`. Its value is `portal` now. `<env>` can be `dev`, `sit`, `prod` and other values in the future.
 
-2. Run `mvn clean package`. It will give you a `<app-name>.war` package under `target` folder.
+2. To spring-boot-client Run `mvn clean package -Pdev<environment>`. It will give you a `<app-name>.war` package under `target` folder.
 
 3. Deploy this war into Tomcat or other Web/Application servers.
 
@@ -41,16 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 研究区分onbeforeunload事件是刷新还是关闭
 https://blog.csdn.net/allgis/article/details/46659395
 
-o：organization（组织-公司）
-ou：organization unit（组织单元-部门）
-c：countryName（国家）
-dc：domainComponent（域名）
-sn：surname（姓氏）
-cn：common name（常用名称）
-sAMAccountName:英文名(RTX账号,唯一)
-userPrincipalName:登陆用户名 和 英文名一致
-
-
+### Webpack Reference
 https://github.com/guyoung/angular6-webpack4-quickstart
 
 https://blog.angularindepth.com/upgrading-a-project-without-cli-to-angular-6-b07b105adc02
