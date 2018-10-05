@@ -3,15 +3,21 @@
  *
  * @author Ethen Cao
  */
-package com.ethan.core.encrypt;
+package encrypt;
 
-import com.ethan.core.config.WebSecurityConfiguration;
+import com.aisp.CommonApplication;
+import com.aisp.core.config.LdapConfig;
+import com.aisp.core.config.SecurityConfig;
+import com.aisp.core.config.WebSecurityConfiguration;
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
 
 /**
  * @program: spring-boot
@@ -20,14 +26,32 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @creat_date: 2018-09-18 10:23
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = CommonApplication.class)
 public class PasswordEncryptTest {
     @Autowired
     private WebSecurityConfiguration configuration;
+    @Autowired
+    private LdapConfig cfg;
+    @Autowired
+    private SecurityConfig securityConfig;
+    @Value("${jwt.secret}")
+    public String pwd;
 
-    @Test
+    // @Test
     public void passwordTest() {
-        PasswordEncoder encoder = configuration.passwordEncoder();
-        encoder.encode("password");
+        // PasswordEncoder encoder = configuration.passwordEncoder();
+        // encoder.encode("password");
+        System.out.println(Arrays.asList(cfg.getUrls()));
+        System.out.println(cfg.getTimeout());
     }
+    @Test
+    public void jasyptTets() {
+        StringEncryptor encryptor = securityConfig.stringEncryptor();
+        final String encryptStr = encryptor.encrypt("xxxx_Token_PasswOrd");
+        final String decryptStr = encryptor.decrypt(encryptStr);
+        System.out.println(encryptStr);
+        System.out.println(decryptStr);
+        System.out.println(">>>>>>>>> "+pwd);
+    }
+
 }

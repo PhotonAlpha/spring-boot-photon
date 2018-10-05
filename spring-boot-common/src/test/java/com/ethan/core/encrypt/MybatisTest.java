@@ -3,12 +3,12 @@
  *
  * @author Cao Qiang
  */
-package com.ethan.core.encrypt;
+package encrypt;
 
-import com.ethan.CommonApplication;
-import com.ethan.common.model.AppDictionary;
-import com.ethan.common.service.ConfigService;
-import com.ethan.core.model.Pagination;
+import com.aisp.CommonApplication;
+import com.aisp.common.model.Codes;
+import com.aisp.common.service.ConfigService;
+import com.aisp.core.model.Pagination;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 /**
- * @program: spring-boot
+ * @program: aisp
  * @description: TODO
- * @author: 411084090@qq.com
+ * @author: qiang.caocq@ncs.com.sg
  * @creat_date: 2018-09-30 01:24
  **/
 @RunWith(SpringRunner.class)
@@ -31,15 +31,15 @@ public class MybatisTest {
 
     @Test
     public void testDB() {
-        AppDictionary dic1 = new AppDictionary().setKey("sg").setValue("singapore").setGroupName("country");
-        AppDictionary dic2 = new AppDictionary().setKey("id").setValue("india").setGroupName("country");
-        AppDictionary dic3 = new AppDictionary().setKey("hk").setValue("hongkong").setGroupName("country");
+        Codes dic1 = new Codes().setKey("sg").setValue("singapore").setType("country");
+        Codes dic2 = new Codes().setKey("id").setValue("india").setType("country");
+        Codes dic3 = new Codes().setKey("hk").setValue("hongkong").setType("country");
 
         configService.insertDic(dic1);
         configService.insertDic(dic2);
         configService.insertDic(dic3);
 
-        AppDictionary dicold = configService.getOne(1L);
+        Codes dicold = configService.getOne(1L);
         System.out.println(dicold);
 
         Pagination page = new Pagination();
@@ -47,7 +47,7 @@ public class MybatisTest {
         System.out.println("page>>>>>>>>>>");
         System.out.println(page);
 
-        List<AppDictionary> result = configService.getAll();
+        List<Codes> result = configService.getAll();
         System.out.println(result);
 
         dicold.setKey("cn");
