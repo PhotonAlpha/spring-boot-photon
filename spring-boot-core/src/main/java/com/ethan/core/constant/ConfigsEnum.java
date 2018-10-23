@@ -6,8 +6,8 @@ public enum ConfigsEnum {
      **/
     PREFFIX("^^["),
     SUFFIX("]"),
-    PRIVATE_KEY("certificate/gaicCert.jks"),
-    PUBLIC_KEY("certificate/gaicPublic.csr"),
+    PRIVATE_KEY("certificate/Cert.jks"),
+    PUBLIC_KEY("certificate/Public.csr"),
     KEY_PASS("certificate/keypass.text");
 
     private String value;
