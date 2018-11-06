@@ -30,3 +30,4 @@ includes
     * redis
     * netty
 
+https://stackoverflow.com/questions/29920434/maven-adding-mainclass-in-pom-xml-with-the-right-folder-path
