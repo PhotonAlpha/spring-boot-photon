@@ -30,5 +30,4 @@ public interface AppDictionaryMapper {
 
     int delete(Long id);
 
-
 }

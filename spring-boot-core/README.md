@@ -17,7 +17,7 @@ Integrate Spring Boot Configuration
 ```
 keytool -genkeypair -alias xxxkey -keyalg RSA -dname "CN=Web Server,OU=Unit,O=Organization,L=Singapore,S=SG,C=SG" -keypass Password1@3 -keystore D:\sourcecode\xxxCert.jks -storetype pkcs12 -storepass Password1@3
 
-keytool -certreq -alias xxxkey -keyalg RSA -file D:\sourcecode\xxxCert.csr -keystore D:\sourcecode\GAIC\xxxCert.jks
+keytool -certreq -alias xxxkey -keyalg RSA -file D:\sourcecode\xxxCert.csr -keystore D:\sourcecode\xxxCert.jks
 
 keytool -export -alias xxxkey -keystore D:\sourcecode\xxxCert.jks -file D:\sourcecode\xxxPublic.csr
 ```

@@ -10,9 +10,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @program: aisp
  * @description: TODO
- * @author: qiang.caocq@ncs.com.sg
+ * @author: 411084090@qq.com
  * @creat_date: 2018-09-27 18:23
  **/
 @Component

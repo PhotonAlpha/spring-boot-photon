@@ -3,12 +3,12 @@
  *
  * @author Ethen Cao
  */
-package encrypt;
+package com.ethan.core.encrypt;
 
-import com.aisp.CommonApplication;
-import com.aisp.core.config.LdapConfig;
-import com.aisp.core.config.SecurityConfig;
-import com.aisp.core.config.WebSecurityConfiguration;
+import com.ethan.CommonApplication;
+import com.ethan.core.config.LdapConfig;
+import com.ethan.core.config.SecurityConfig;
+import com.ethan.core.config.WebSecurityConfiguration;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
