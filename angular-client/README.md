@@ -40,19 +40,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-```
-  @HostListener('window:beforeunload', ['$event'])
-  beforeunloadHandler(event) {
-      return event.returnValue  = 'Changes you made may not be saved.';
-  }
-```  
-研究区分onbeforeunload事件是刷新还是关闭
-https://blog.csdn.net/allgis/article/details/46659395
-
-### Webpack Reference
-https://github.com/guyoung/angular6-webpack4-quickstart
-
-https://blog.angularindepth.com/upgrading-a-project-without-cli-to-angular-6-b07b105adc02
-
-https://github.com/PhotonAlpha/photonalpha.github.io/blob/master/Portal/webpack.config.js
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README]
