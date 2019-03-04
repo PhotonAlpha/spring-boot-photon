@@ -4,7 +4,7 @@ spring:
       enabled: true
       path: /h2-console
   datasource:
-    url: jdbc:h2:mem:local;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:tcp://localhost:9092/~/test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password: 
@@ -13,27 +13,6 @@ spring:
       ddl-auto: create
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-  ldap:
-    urls:
-    - ldap://localhost:10389
-    - ldap://localhost:8389
-    username: uid=admin,ou=system
-    password: password
-    base: dc=springframework,dc=org
-    timeout: 100
-    ssl: no
-    referral: follow
-    embedded:
-      ldif: classpath:my-ldap.ldif
-      port: 8389
-      credential:
-        username: uid=admin,ou=system
-        password: password
-      base-dn: dc=springframework,dc=org
-      validation:
-        enabled: false
-
-
 
 jwt:
   header: Authorization

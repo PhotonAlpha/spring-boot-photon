@@ -45,10 +45,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/v2/api-docs",
             "/webjars/**"
     };
-    @Bean
-    public UnAuthenticationEntryPoint unAuthenticationEntryPoint() {
-        return new UnAuthenticationEntryPoint();
-    }
+    @Autowired
+    private UnAuthenticationEntryPoint unAuthenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -63,7 +61,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and()
             .csrf().disable()
-            .exceptionHandling().authenticationEntryPoint(unAuthenticationEntryPoint()).and()
+            .exceptionHandling().authenticationEntryPoint(unAuthenticationEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
             .antMatchers(HttpMethod.GET, "/",

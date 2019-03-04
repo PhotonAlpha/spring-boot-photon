@@ -5,8 +5,7 @@
  */
 package com.ethan.core.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,8 +21,7 @@ import java.util.List;
  **/
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Data
 public class Users {
     @Id
     @Column(name = "ID")

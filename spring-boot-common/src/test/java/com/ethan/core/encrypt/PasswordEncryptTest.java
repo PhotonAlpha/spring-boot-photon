@@ -6,7 +6,6 @@
 package com.ethan.core.encrypt;
 
 import com.ethan.CommonApplication;
-import com.ethan.core.config.LdapConfig;
 import com.ethan.core.config.SecurityConfig;
 import com.ethan.core.config.WebSecurityConfiguration;
 import org.jasypt.encryption.StringEncryptor;
@@ -16,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Arrays;
 
 /**
  * @program: spring-boot
@@ -31,19 +28,10 @@ public class PasswordEncryptTest {
     @Autowired
     private WebSecurityConfiguration configuration;
     @Autowired
-    private LdapConfig cfg;
-    @Autowired
     private SecurityConfig securityConfig;
     @Value("${jwt.secret}")
     public String pwd;
 
-    // @Test
-    public void passwordTest() {
-        // PasswordEncoder encoder = configuration.passwordEncoder();
-        // encoder.encode("password");
-        System.out.println(Arrays.asList(cfg.getUrls()));
-        System.out.println(cfg.getTimeout());
-    }
     @Test
     public void jasyptTets() {
         StringEncryptor encryptor = securityConfig.stringEncryptor();

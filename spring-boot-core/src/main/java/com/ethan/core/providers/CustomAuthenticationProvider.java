@@ -29,7 +29,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
     private PasswordEncoder passwordEncoder;
     @Autowired
-    @Qualifier(ServiceConstant.LDAP_SERVICE)
     private UserDetailsService userService;
 
     @Override

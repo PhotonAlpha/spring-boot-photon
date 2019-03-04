@@ -10,11 +10,9 @@ import com.ethan.core.security.jwt.JwtAuthenticationRequest;
 import com.ethan.core.security.jwt.JwtTokenDto;
 import com.ethan.core.security.jwt.JwtTokenUtils;
 import com.ethan.core.security.jwt.JwtUser;
-import com.ethan.core.security.ldap.JwtLdapUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +39,6 @@ public class AuthenticationController {
     @Value("${jwt.header}")
     private String tokenHeader;
     @Autowired
-    @Qualifier(ServiceConstant.LDAP_SERVICE)
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtTokenUtils jwtTokenUtil;
@@ -65,7 +62,7 @@ public class AuthenticationController {
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             final String token = requestHeader.substring(7);
             final String username = jwtTokenUtil.getUsernameFromToken(token);
-            JwtLdapUser user = (JwtLdapUser) userDetailsService.loadUserByUsername(username);
+            JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
             if (jwtTokenUtil.canTokenBeRefreshed(token)) {
                 String refreshToken = jwtTokenUtil.refreshToken(token);
                 final String newToken = jwtTokenUtil.generateToken(user, device);
