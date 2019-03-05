@@ -106,7 +106,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public CustomAuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider().setPasswordEncoder(new LdapShaPasswordEncoder());
+        return new CustomAuthenticationProvider().setPasswordEncoder(passwordEncoder());
     }
 
 

@@ -20,53 +20,57 @@ import java.util.List;
  * @creat_date: 2018-09-17 15:32
  **/
 @Entity
-@Table(name = "users")
+@Table(name = "fc_users")
 @Data
 public class Users {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "USERNAME", length = 50, unique = true)
+    @Column(name = "username", length = 50, unique = true)
     @NotNull
     @Size(min = 4, max = 50)
     private String username;
 
-    @Column(name = "PASSWORD", length = 100)
-    @NotNull
+    @Column(name = "password", length = 100)
+    // @NotNull
     @Size(min = 4, max = 100)
     private String password;
 
-    @Column(name = "FIRSTNAME", length = 50)
+    @Column(name = "mobile_no", length = 50)
+    @NotNull
+    @Size(min = 11, max = 11)
+    private String mobileNo;
+
+    @Column(name = "mobile_code", length = 100)
     @NotNull
     @Size(min = 4, max = 50)
-    private String firstname;
+    private String mobileCode;
 
-    @Column(name = "LASTNAME", length = 50)
-    @NotNull
-    @Size(min = 4, max = 50)
-    private String lastname;
-
-    @Column(name = "EMAIL", length = 50)
-    @NotNull
-    @Size(min = 4, max = 50)
-    private String email;
-
-    @Column(name = "ENABLED")
+    @Column(name = "enabled")
     @NotNull
     private Boolean enabled;
 
-    @Column(name = "LASTPASSWORDRESETDATE")
+    @Column(name = "login_time")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
-    private Date lastPasswordResetDate;
+    private Date loginTime;
+    @Column(name = "create_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    private Date createTime;
+
+    @Column(name = "update_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    private Date updateTime;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_AUTHORITYS",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+            name = "fc_user_authoritys",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
     private List<Authoritys> authorities;
 
 }

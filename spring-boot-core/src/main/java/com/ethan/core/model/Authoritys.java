@@ -19,20 +19,20 @@ import java.util.List;
  * @creat_date: 2018-09-17 15:35
  **/
 @Entity
-@Table(name = "authoritys")
+@Table(name = "fc_authoritys")
 @Getter
 @Setter
 public class Authoritys {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NAME", length = 50)
+    @Column(name = "name", length = 50)
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "fc_authorities", fetch = FetchType.LAZY)
     private List<Users> users;
 }

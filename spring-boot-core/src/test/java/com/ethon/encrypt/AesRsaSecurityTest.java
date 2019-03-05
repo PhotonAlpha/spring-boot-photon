@@ -26,9 +26,11 @@ import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.encrypt.BytesEncryptor;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.keygen.KeyGenerators;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 // @RunWith(SpringRunner.class)
 // @SpringBootTest
@@ -38,7 +40,16 @@ public class AesRsaSecurityTest {
     private String username1;
     @Value("${spring.secondary.datasource.username}")
     private String username2;
-    
+
+
+    @Test
+    public void encryptPassword() {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String result = encoder.encode("password");
+        System.out.println(result);
+        System.out.println(encoder.matches("password", "$2a$10$i.ZD5NBcLsWQNhEYlr6kCO8vVHASvG5NGChAAVw5zQ9550OgEHbCC"));
+    }
+
 //    @Test
     public void shouldAlwaysAllowPublic() throws Exception {
         System.out.println("-----------");
