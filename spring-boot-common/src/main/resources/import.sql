@@ -1,6 +1,6 @@
-INSERT INTO USERS (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE) VALUES (1, 'admin', '$2a$10$vdOFqSqL8857RaG.eW5iEexviO6MpaTAB1M/smIZ6FFhpNCEprUsq', 'admin', 'admin', 'admin@admin.com', 1, '2019-10-14T21:32:29');
-INSERT INTO USERS (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE) VALUES (2, 'ethan', '$2a$10$vdOFqSqL8857RaG.eW5iEexviO6MpaTAB1M/smIZ6FFhpNCEprUsq', 'user', 'user', 'enabled@user.com', 1, '2019-10-14T21:32:29');
-INSERT INTO USERS (ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, ENABLED, LASTPASSWORDRESETDATE) VALUES (3, 'disabled', '$2a$10$vdOFqSqL8857RaG.eW5iEexviO6MpaTAB1M/smIZ6FFhpNCEprUsq', 'user', 'user', 'disabled@user.com', 0, '2019-10-14T21:32:29');
+insert into users (id, username, password, mobileNo, mobileCode, enabled, loginTime, createTime, updateTime) values (1, 'admin', '$2a$10$vdofqsql8857rag.ew5ieexvio6mpatab1m/smiz6ffhpnceprusq', '15262689012', '123456', 1, '2019-10-14t21:32:29', '2019-10-14t21:32:29', '2019-10-14t21:32:29');
+insert into users (id, username, password, mobileNo, mobileCode, enabled, loginTime, createTime, updateTime) values (2, 'ethan', '$2a$10$vdofqsql8857rag.ew5ieexvio6mpatab1m/smiz6ffhpnceprusq', '15262689012', '123456', 1, '2019-10-14t21:32:29', '2019-10-14t21:32:29', '2019-10-14t21:32:29');
+insert into users (id, username, password, mobileNo, mobileCode, enabled, loginTime, createTime, updateTime) values (3, 'disabled', '$2a$10$vdofqsql8857rag.ew5ieexvio6mpatab1m/smiz6ffhpnceprusq', '15262689012', '123456', 1, '2019-10-14t21:32:29', '2019-10-14t21:32:29', '2019-10-14t21:32:29');
 
 INSERT INTO AUTHORITYS (ID, NAME) VALUES (1, 'ROLE_USER');
 INSERT INTO AUTHORITYS (ID, NAME) VALUES (2, 'ROLE_ADMIN');

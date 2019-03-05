@@ -69,8 +69,8 @@ public class Users {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "fc_user_authoritys",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "fc_user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "fc_authority_id", referencedColumnName = "id")})
     private List<Authoritys> authorities;
 
 }

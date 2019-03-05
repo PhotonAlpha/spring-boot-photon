@@ -24,17 +24,15 @@ public class JwtUserFactory {
         return new JwtUser(
                 user.getId(),
                 user.getUsername(),
-                user.getFirstname(),
-                user.getLastname(),
                 user.getPassword(),
-                user.getEmail(),
+                user.getMobileNo(),
+                user.getMobileCode(),
                 mapToGeneratedAuthorities(user.getAuthorities()),
-                user.getEnabled(),
-                user.getLastPasswordResetDate()
+                user.getEnabled()
         );
     }
-    private static List<GrantedAuthority> mapToGeneratedAuthorities(List<Authoritys> authoritys) {
-        List<GrantedAuthority> list = authoritys.stream().map(auth -> new SimpleGrantedAuthority(auth.getName().name()))
+    private static List<GrantedAuthority> mapToGeneratedAuthorities(List<Authoritys> authorities) {
+        List<GrantedAuthority> list = authorities.stream().map(auth -> new SimpleGrantedAuthority(auth.getName().name()))
                 .collect(Collectors.toList());
         return list;
     }
