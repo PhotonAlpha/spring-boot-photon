@@ -4,6 +4,7 @@ import { MatButtonModule, MatCheckboxModule, MatRadioModule,
     MatIconModule, MatDialogModule, MatSliderModule, MatCardModule, MatProgressBarModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const matModules = [
     NgbModule,
@@ -16,10 +17,12 @@ const matModules = [
 
 @NgModule({
     imports: [
-        matModules
+        matModules,
+        FontAwesomeModule
     ],
     exports: [
-        matModules
+        matModules,
+        FontAwesomeModule
     ],
 })
 export class ShareModule {}

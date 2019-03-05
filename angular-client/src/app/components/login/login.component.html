@@ -1,46 +1,29 @@
-<div class="container-fluid">
+<div class="container-fluid" id="loginModule" >
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-12 col-lg-10 col-xl-8" style = "background-color: black">
-                <div class="d-flex justify-content-center" >
-                    123
+        <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="jumbotron">
+                    <h4 class="display-6">手机快捷登录</h4>
+                    <form [formGroup]="loginForm" >
+                        <mat-form-field class="input-group form-frame">
+                            <input matInput formControlName="mobileNo" placeholder="请输入手机号码">
+                            <span matSuffix >获取验证码</span>
+                        </mat-form-field>
+                        <!-- <span matSuffix >获取验证码</span> -->
+                        <mat-form-field class="input-group form-frame">
+                            <input matInput formControlName="mobileCode" placeholder="请输入验证码">
+                        </mat-form-field>
+
+                        <div class="input-group mb-4 col-12 justify-content-center align-items-center">
+                            <button (click)="commit()" class="btn-frame btn btn-primary">登录</button>
+                        </div>
+                        <div class="input-group col-12 justify-content-center align-items-center">
+                            <button (click)="regist()" class="btn-frame btn btn-outline-primary">注册</button>
+                        </div>
+                        
+                    </form>
                 </div>
-            </div>
-            
-            <div class="col-md-12">
-                <form  >
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">User Name</label>
-                        <input type="email" class="form-control" name="username" [(ngModel)]="user.username" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="password" [(ngModel)]="user.password" placeholder="Password">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" (click)="submit()" class="btn btn-primary">Submit</button>
-                </form>
             </div>
     </div>
     
     
 </div>
-
-<!-- <app-message-subscription></app-message-subscription>
-
-<button type="button" class="btn btn-primary" (click)="send()" >Primary</button>
-<button type="button" class="btn btn-secondary" (click)="clear()" >Secondary</button>
-
-
-<app-pagination
-    (goPage)="goToPage($event)"
-    (goNext)="nextPage()"
-    (goPrev)="prevPage()"
-    [pagesToShow]="4"
-    [currPage]="currPage"
-    [pageSize]="pageSize"
-    [totalCount]="totalCount">
-</app-pagination> -->

@@ -5,13 +5,21 @@ import { Pagination } from 'src/app/models/applications';
 import { MessageService } from 'src/app/utils/injector/message.service';
 import { LoginService } from 'src/app/service/login.service';
 import { AppConfigs } from 'src/app/app-config.module';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    loginForm: FormGroup;
+
+    icons = {
+
+    }
+
+
     loading = false;
     totalCount = 0;
     currPage = 1;
@@ -21,11 +29,28 @@ export class LoginComponent implements OnInit {
     user: Users;
 
     constructor(private messageSvc: MessageService, private loginService: LoginService,
-        private router: Router) {
+        private formBuilder: FormBuilder, private router: Router) {
         this.user = new Users();
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.loginForm = this.formBuilder.group({
+            mobileNo: [''],
+            mobileCode: ['']
+        });
+    }
+
+    commit() {
+        console.log(this.loginForm);
+    }
+
+    regist() {
+        console.log(this.loginForm);
+    }
+
+
+
+
 
     send() {
         let isSucess = false;
