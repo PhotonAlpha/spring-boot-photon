@@ -33,7 +33,7 @@ public class FcFeedback {
     @Column(name = "feedback", length = 3000)
     private String feedback;
 
-    @Column(name = "create_time")
+    @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime;
+    private Date createDate;
 }

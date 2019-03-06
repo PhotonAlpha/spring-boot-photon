@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.FcUserAuditMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ethan.common.model.FcUserAudit">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="end_time" property="endTime"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        user_id,
+        login_time,
+        end_time
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO fc_user_audit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.userId != null"> user_id, </if>
+            <if test="pojo.loginTime != null"> login_time, </if>
+            <if test="pojo.endTime != null"> end_time, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.userId != null"> #{pojo.userId}, </if>
+            <if test="pojo.loginTime != null"> #{pojo.loginTime}, </if>
+            <if test="pojo.endTime != null"> #{pojo.endTime}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO fc_user_audit(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.userId},
+            #{pojo.loginTime},
+            #{pojo.endTime}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE fc_user_audit
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.userId != null"> user_id = #{pojo.userId}, </if>
+            <if test="pojo.loginTime != null"> login_time = #{pojo.loginTime}, </if>
+            <if test="pojo.endTime != null"> end_time = #{pojo.endTime} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM fc_user_audit
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.userId != null"> AND user_id = #{pojo.userId} </if>
+            <if test="pojo.loginTime != null"> AND login_time = #{pojo.loginTime} </if>
+            <if test="pojo.endTime != null"> AND end_time = #{pojo.endTime} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM fc_user_audit where id = #{id}
+    </delete>
+</mapper>

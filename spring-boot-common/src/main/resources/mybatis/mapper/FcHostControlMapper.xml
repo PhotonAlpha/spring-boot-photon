@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.FcHostControlMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ethan.common.model.FcHostControl">
+        <result column="id" property="id"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="host_name" property="hostName"/>
+        <result column="host_address" property="hostAddress"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        device_id,
+        host_name,
+        host_address
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO fc_host_control
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.deviceId != null"> device_id, </if>
+            <if test="pojo.hostName != null"> host_name, </if>
+            <if test="pojo.hostAddress != null"> host_address, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.deviceId != null"> #{pojo.deviceId}, </if>
+            <if test="pojo.hostName != null"> #{pojo.hostName}, </if>
+            <if test="pojo.hostAddress != null"> #{pojo.hostAddress}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO fc_host_control(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.deviceId},
+            #{pojo.hostName},
+            #{pojo.hostAddress}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE fc_host_control
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.deviceId != null"> device_id = #{pojo.deviceId}, </if>
+            <if test="pojo.hostName != null"> host_name = #{pojo.hostName}, </if>
+            <if test="pojo.hostAddress != null"> host_address = #{pojo.hostAddress} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM fc_host_control
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.deviceId != null"> AND device_id = #{pojo.deviceId} </if>
+            <if test="pojo.hostName != null"> AND host_name = #{pojo.hostName} </if>
+            <if test="pojo.hostAddress != null"> AND host_address = #{pojo.hostAddress} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM fc_host_control where id = #{id}
+    </delete>
+</mapper>

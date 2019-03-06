@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.FcApplicationHostControlMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ethan.common.model.FcApplicationHostControl">
+        <result column="id" property="id"/>
+        <result column="app_id" property="appId"/>
+        <result column="host_control_id" property="hostControlId"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        app_id,
+        host_control_id
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO fc_application_host_control
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.appId != null"> app_id, </if>
+            <if test="pojo.hostControlId != null"> host_control_id, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.appId != null"> #{pojo.appId}, </if>
+            <if test="pojo.hostControlId != null"> #{pojo.hostControlId}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO fc_application_host_control(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.appId},
+            #{pojo.hostControlId}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE fc_application_host_control
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.appId != null"> app_id = #{pojo.appId}, </if>
+            <if test="pojo.hostControlId != null"> host_control_id = #{pojo.hostControlId} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM fc_application_host_control
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.appId != null"> AND app_id = #{pojo.appId} </if>
+            <if test="pojo.hostControlId != null"> AND host_control_id = #{pojo.hostControlId} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM fc_application_host_control where id = #{id}
+    </delete>
+</mapper>

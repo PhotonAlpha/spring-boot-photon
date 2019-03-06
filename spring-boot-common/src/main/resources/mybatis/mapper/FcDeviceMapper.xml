@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.FcDeviceMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ethan.common.model.FcDevice">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_description" property="deviceDescription"/>
+        <result column="device_nickname" property="deviceNickname"/>
+        <result column="period_start" property="periodStart"/>
+        <result column="period_end" property="periodEnd"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="disable_date" property="disableDate"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        user_id,
+        device_name,
+        device_description,
+        device_nickname,
+        period_start,
+        period_end,
+        create_date,
+        update_date,
+        disable_date
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO fc_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.userId != null"> user_id, </if>
+            <if test="pojo.deviceName != null"> device_name, </if>
+            <if test="pojo.deviceDescription != null"> device_description, </if>
+            <if test="pojo.deviceNickname != null"> device_nickname, </if>
+            <if test="pojo.periodStart != null"> period_start, </if>
+            <if test="pojo.periodEnd != null"> period_end, </if>
+            <if test="pojo.createDate != null"> create_date, </if>
+            <if test="pojo.updateDate != null"> update_date, </if>
+            <if test="pojo.disableDate != null"> disable_date, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.userId != null"> #{pojo.userId}, </if>
+            <if test="pojo.deviceName != null"> #{pojo.deviceName}, </if>
+            <if test="pojo.deviceDescription != null"> #{pojo.deviceDescription}, </if>
+            <if test="pojo.deviceNickname != null"> #{pojo.deviceNickname}, </if>
+            <if test="pojo.periodStart != null"> #{pojo.periodStart}, </if>
+            <if test="pojo.periodEnd != null"> #{pojo.periodEnd}, </if>
+            <if test="pojo.createDate != null"> #{pojo.createDate}, </if>
+            <if test="pojo.updateDate != null"> #{pojo.updateDate}, </if>
+            <if test="pojo.disableDate != null"> #{pojo.disableDate}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO fc_device(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.userId},
+            #{pojo.deviceName},
+            #{pojo.deviceDescription},
+            #{pojo.deviceNickname},
+            #{pojo.periodStart},
+            #{pojo.periodEnd},
+            #{pojo.createDate},
+            #{pojo.updateDate},
+            #{pojo.disableDate}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE fc_device
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.userId != null"> user_id = #{pojo.userId}, </if>
+            <if test="pojo.deviceName != null"> device_name = #{pojo.deviceName}, </if>
+            <if test="pojo.deviceDescription != null"> device_description = #{pojo.deviceDescription}, </if>
+            <if test="pojo.deviceNickname != null"> device_nickname = #{pojo.deviceNickname}, </if>
+            <if test="pojo.periodStart != null"> period_start = #{pojo.periodStart}, </if>
+            <if test="pojo.periodEnd != null"> period_end = #{pojo.periodEnd}, </if>
+            <if test="pojo.createDate != null"> create_date = #{pojo.createDate}, </if>
+            <if test="pojo.updateDate != null"> update_date = #{pojo.updateDate}, </if>
+            <if test="pojo.disableDate != null"> disable_date = #{pojo.disableDate} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM fc_device
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.userId != null"> AND user_id = #{pojo.userId} </if>
+            <if test="pojo.deviceName != null"> AND device_name = #{pojo.deviceName} </if>
+            <if test="pojo.deviceDescription != null"> AND device_description = #{pojo.deviceDescription} </if>
+            <if test="pojo.deviceNickname != null"> AND device_nickname = #{pojo.deviceNickname} </if>
+            <if test="pojo.periodStart != null"> AND period_start = #{pojo.periodStart} </if>
+            <if test="pojo.periodEnd != null"> AND period_end = #{pojo.periodEnd} </if>
+            <if test="pojo.createDate != null"> AND create_date = #{pojo.createDate} </if>
+            <if test="pojo.updateDate != null"> AND update_date = #{pojo.updateDate} </if>
+            <if test="pojo.disableDate != null"> AND disable_date = #{pojo.disableDate} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM fc_device where id = #{id}
+    </delete>
+</mapper>

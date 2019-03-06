@@ -27,6 +27,9 @@ public class FcApplication {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "device_id")
+    private Long deviceId;
+
     @Column(name = "app_name", length = 50)
     private String appName;
 

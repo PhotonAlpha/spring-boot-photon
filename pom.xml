@@ -77,7 +77,6 @@
     <modules>
         <module>spring-boot-common</module>
         <module>spring-boot-core</module>
-        <module>spring-boot-client</module>
     </modules>
 
 

@@ -24,10 +24,16 @@ public class FcHostControl {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "device_id")
+    private Long deviceId;
+
     @Column(name = "host_name", length = 50)
     private String hostName;
 
     @Column(name = "host_address", length = 1000)
     private String hostAddress;
+
+    @Column(name = "accessible")
+    private Boolean accessible;
 
 }

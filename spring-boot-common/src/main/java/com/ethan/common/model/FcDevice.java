@@ -21,11 +21,14 @@ import java.util.Date;
 @Table(name = "fc_device")
 @Data
 @ToString
-public class FcDevice {
+public class FcDevice extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "device_name", length = 50)
     private String deviceName;

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ethan.common.dao.FcApplicationMapper">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ethan.common.model.FcApplication">
+        <result column="id" property="id"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="app_name" property="appName"/>
+        <result column="app_description" property="appDescription"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        device_id,
+        app_name,
+        app_description
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO fc_application
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.deviceId != null"> device_id, </if>
+            <if test="pojo.appName != null"> app_name, </if>
+            <if test="pojo.appDescription != null"> app_description, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.deviceId != null"> #{pojo.deviceId}, </if>
+            <if test="pojo.appName != null"> #{pojo.appName}, </if>
+            <if test="pojo.appDescription != null"> #{pojo.appDescription}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO fc_application(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.deviceId},
+            #{pojo.appName},
+            #{pojo.appDescription}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE fc_application
+        <set>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.deviceId != null"> device_id = #{pojo.deviceId}, </if>
+            <if test="pojo.appName != null"> app_name = #{pojo.appName}, </if>
+            <if test="pojo.appDescription != null"> app_description = #{pojo.appDescription} </if>
+        </set>
+         WHERE id = #{pojo.id}
+    </update>
+
+<!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT <include refid="all_column"/>
+        FROM fc_application
+        <where>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.deviceId != null"> AND device_id = #{pojo.deviceId} </if>
+            <if test="pojo.appName != null"> AND app_name = #{pojo.appName} </if>
+            <if test="pojo.appDescription != null"> AND app_description = #{pojo.appDescription} </if>
+        </where>
+        LIMIT 1000 
+    </select>
+
+<!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM fc_application where id = #{id}
+    </delete>
+</mapper>

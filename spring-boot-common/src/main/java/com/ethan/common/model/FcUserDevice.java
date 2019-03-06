@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * @date 05/03/2019
  */
 @Entity
-@Table(name = "fc_device")
+@Table(name = "fc_user_device")
 @Data
 @ToString
 public class FcUserDevice {
@@ -23,4 +23,10 @@ public class FcUserDevice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "device_id")
+    private Long deviceId;
 }
