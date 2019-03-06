@@ -33,6 +33,7 @@ public class Authoritys {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    @ManyToMany(mappedBy = "fc_authorities", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
     private List<Users> users;
+
 }

@@ -5,6 +5,7 @@
  */
 package com.ethan.core.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ import java.util.List;
 @Entity
 @Table(name = "fc_users")
 @Data
+@Builder
 public class Users {
     @Id
     @Column(name = "id")
@@ -33,19 +35,18 @@ public class Users {
     @Size(min = 4, max = 50)
     private String username;
 
-    @Column(name = "password", length = 100)
+    @Column(name = "password", length = 1000)
     // @NotNull
-    @Size(min = 4, max = 100)
+    @Size(min = 4, max = 1000)
     private String password;
 
-    @Column(name = "mobile_no", length = 50)
+    @Column(name = "mobile_no", length = 50, unique = true)
     @NotNull
     @Size(min = 11, max = 11)
     private String mobileNo;
 
-    @Column(name = "mobile_code", length = 100)
+    @Column(name = "mobile_code", length = 1000)
     @NotNull
-    @Size(min = 4, max = 50)
     private String mobileCode;
 
     @Column(name = "enabled")
@@ -69,8 +70,8 @@ public class Users {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "fc_user_authoritys",
-            joinColumns = {@JoinColumn(name = "fc_user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "fc_authority_id", referencedColumnName = "id")})
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "id")})
     private List<Authoritys> authorities;
 
 }

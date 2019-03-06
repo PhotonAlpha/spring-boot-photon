@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
@@ -22,6 +23,10 @@ import java.io.Serializable;
 @ToString
 public class JwtAuthenticationRequest implements Serializable {
     private static final long serialVersionUID = -4200488784505744588L;
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
+    @NotEmpty
+    private String code;
 }

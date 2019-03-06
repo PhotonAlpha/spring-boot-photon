@@ -1,5 +1,9 @@
 package com.ethan.core.service;
 
+import com.ethan.core.model.Users;
+import com.ethan.core.security.jwt.JwtAuthenticationRequest;
+import org.springframework.mobile.device.Device;
+
 import java.util.List;
 
 /**
@@ -15,4 +19,8 @@ public interface UserService<T> {
      * @return user list
      */
     List<T> getUsers();
+
+    String preVerifyCode(String mobileNo, Device device);
+
+    Users register(JwtAuthenticationRequest request, Device device) throws Exception;
 }

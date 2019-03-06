@@ -18,6 +18,7 @@ jwt:
   header: Authorization
   secret: mySecret
   expiration: 600000
+  shortexpiration: 60
 
 server:
   port: 8080

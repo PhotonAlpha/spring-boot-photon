@@ -20,6 +20,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 import com.ethan.core.constant.ConfigsEnum;
+import com.ethan.core.model.AuthorityName;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
 import org.jasypt.encryption.StringEncryptor;
@@ -41,6 +42,10 @@ public class AesRsaSecurityTest {
     @Value("${spring.secondary.datasource.username}")
     private String username2;
 
+    @Test
+    public void str() {
+        System.out.println(AuthorityName.ROLE_USER.name());
+    }
 
     @Test
     public void encryptPassword() {

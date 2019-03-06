@@ -46,6 +46,10 @@ public class JwtUser implements UserDetails {
         return mobileNo;
     }
 
+    public String getMobileCode() {
+        return mobileCode;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

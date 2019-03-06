@@ -46,6 +46,9 @@ public class JwtTokenUtils {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+    @Value("${jwt.shortexpiration}")
+    private Long shortExpiration;
+
     public <T>T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
@@ -96,6 +99,24 @@ public class JwtTokenUtils {
     private Boolean ignoreTokenExpiration(String token) {
         String audience = getAudienceFromToken(token);
         return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
+    }
+
+    public String generateTempToken(String code, Device device) {
+        Map<String, Object> claims = new HashMap<>();
+
+        final Date createdDate = now();
+        final LocalDateTime localTime = createdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime expirationTime = localTime.plusSeconds(shortExpiration);
+        final Date expirationDate = Date.from(expirationTime.atZone(ZoneId.systemDefault()).toInstant());
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(code)
+                .setAudience(generateAudience(device))
+                .setIssuedAt(createdDate)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
     public String generateToken(UserDetails userDetails, Device device) {

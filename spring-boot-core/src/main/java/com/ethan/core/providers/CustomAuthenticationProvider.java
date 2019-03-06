@@ -5,11 +5,11 @@
  */
 package com.ethan.core.providers;
 
-import com.ethan.core.constant.ServiceConstant;
+import com.ethan.core.security.jwt.JwtTokenUtils;
+import com.ethan.core.security.jwt.JwtUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +30,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserDetailsService userService;
+    @Autowired
+    private JwtTokenUtils jwtTokenUtil;
 
     @Override
     public boolean supports(Class<?> authentication) {
@@ -38,13 +40,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        final String name = authentication.getName();
-        final String password = authentication.getCredentials().toString();
+        final String mobileNo = authentication.getName();
+        final String mobileCode = authentication.getCredentials().toString();
         // logger.info("Authenticating for user: {} with password: {}", name, password);
 
-        final UserDetails userDetails = userService.loadUserByUsername(name);
-        if (userDetails == null || !matchPassword(password, userDetails.getPassword())) {
-            throw new BadCredentialsException("Invalid username and password combination");
+        final UserDetails userDetails = userService.loadUserByUsername(mobileNo);
+
+        String subject = jwtTokenUtil.getUsernameFromToken(((JwtUser) userDetails).getMobileCode());
+
+        // if (userDetails == null || !matchPassword(password, userDetails.getPassword())) {
+        if (userDetails == null || !mobileCode.equals(subject)) {
+            throw new BadCredentialsException("验证码过期，请重新发送验证码。");
         }
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
