@@ -2,7 +2,8 @@ import { CanDeactivate } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faEllipsisV, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
     selector: 'app-main',
@@ -11,7 +12,10 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class MainComponent implements OnInit, OnDestroy {
     icons = {
-        'avatar': faUserCircle
+        'avatar': faUserCircle,
+        'ellipsis': faEllipsisV,
+        'plus': faPlus,
+        'circle': faCircle
     };
 
 
