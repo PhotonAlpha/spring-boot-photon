@@ -1,0 +1,12 @@
+#device {
+    ::ng-deep .mat-card-image {
+        width: 100%;
+        margin: 0px;
+    }
+    .skeleton {
+        padding: 0px 50px;
+    }
+    .skeleton>div {
+        display: grid;
+    }
+}

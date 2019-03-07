@@ -1,1 +1,60 @@
-<h1>view device</h1>
+<div class="row" id="device" >
+    <div class="col-12 pb-2" >
+        <mat-card class="example-card">
+            <mat-card-header>
+                <fa-icon mat-card-avatar size="2x" [icon] = 'icons.phone' ></fa-icon>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title>苹果iPad</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img mat-card-image src="assets/imgs/ipad.jpg" alt="Photo of a Shiba Inu">
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="d-flex justify-content-between text-center skeleton pl-3 pr-3 " >
+                    <div [routerLink]="['/main/dashboard/applications']" >
+                        <fa-icon  routerLinkActive="router-link-active"  mat-icon-button size="2x" [icon]='icons.shop' ></fa-icon><span>应用</span>
+                    </div>
+                    <div [routerLink]="['/main/dashboard/host-control']" >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.earth' ></fa-icon><span>上网管理</span>
+                    </div>
+                    <div [routerLink]="['/main/dashboard/status']" >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.clock' ></fa-icon><span>使用情况</span>
+                    </div>
+                    <div [routerLink]="['/main/dashboard/config']" >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.cog' spin="true" ></fa-icon><span>设置</span>
+                    </div>
+                </div>
+                
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col-12 pb-2" >
+        <mat-card class="example-card">
+            <mat-card-header>
+                <fa-icon mat-card-avatar size="2x" [icon] = 'icons.phone' ></fa-icon>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title>苹果iPad</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img mat-card-image src="assets/imgs/ipad.jpg" alt="Photo of a Shiba Inu">
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="d-flex justify-content-between text-center skeleton pl-3 pr-3 " >
+                    <div >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.shop' ></fa-icon><span>应用</span>
+                    </div>
+                    <div >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.earth' ></fa-icon><span>上网管理</span>
+                    </div>
+                    <div >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.clock' ></fa-icon><span>使用情况</span>
+                    </div>
+                    <div >
+                        <fa-icon mat-icon-button size="2x" [icon]='icons.cog' spin="true" ></fa-icon><span>设置</span>
+                    </div>
+                </div>
+                
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>    

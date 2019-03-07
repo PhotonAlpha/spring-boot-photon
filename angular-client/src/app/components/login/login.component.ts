@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
 
     commit() {
         console.log(this.loginForm);
+        this.router.navigate(['/main']);
     }
 
     regist() {

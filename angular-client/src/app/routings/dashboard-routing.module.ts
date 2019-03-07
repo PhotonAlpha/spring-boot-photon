@@ -16,7 +16,7 @@ const routes: Routes = [
             { path: 'applications', component: DeviceAppComponent },
             { path: 'status', component: StatusComponent },
             { path: 'config', component: ConfigComponent },
-            { path: 'host-contril', component: HostControlComponent },
+            { path: 'host-control', component: HostControlComponent },
         ]
     }
 ];
