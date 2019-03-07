@@ -14,7 +14,7 @@ import java.util.List;
 @Api(value = "Application Manager Controller", description = "Application Module", tags = "Application")
 public class AppManagerController extends BasicController {
     @GetMapping(value = "/devices")
-    public ResponseEntity<?> getDeviceList() {
+    public ResponseEntity<?> getApplicationList() {
         Long userid = 1L;
         // List<FcDevice> result = deviceService.findByUserId(userid);
         return ResponseEntity.ok("");
