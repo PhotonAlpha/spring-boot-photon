@@ -19,5 +19,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("v1")
 public abstract class BasicController {
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected Logger log = LoggerFactory.getLogger(this.getClass());
 }

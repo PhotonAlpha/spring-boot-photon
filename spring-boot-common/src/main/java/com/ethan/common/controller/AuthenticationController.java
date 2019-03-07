@@ -5,19 +5,15 @@
  */
 package com.ethan.common.controller;
 
-import com.ethan.common.utils.Utils;
-import com.ethan.core.constant.ServiceConstant;
+import com.ethan.common.model.dto.response.SimpleResponse;
 import com.ethan.core.model.Users;
 import com.ethan.core.security.jwt.JwtAuthenticationRequest;
 import com.ethan.core.security.jwt.JwtTokenDto;
 import com.ethan.core.security.jwt.JwtTokenUtils;
 import com.ethan.core.security.jwt.JwtUser;
 import com.ethan.core.service.UserService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -70,7 +66,7 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authRequest, Device device) {
+    public ResponseEntity<JwtTokenDto> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authRequest, Device device) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
         );
@@ -95,14 +91,7 @@ public class AuthenticationController {
                 return ResponseEntity.ok(new JwtTokenDto(newToken, refreshToken));
             }
         }
-        return ResponseEntity.badRequest().body("Token maybe expired.");
+        return ResponseEntity.badRequest().body(new SimpleResponse(false, "Token maybe expired."));
     }
-}
-
-@Data
-@AllArgsConstructor
-class SimpleResponse {
-    private Boolean success;
-    private String message;
 }
 

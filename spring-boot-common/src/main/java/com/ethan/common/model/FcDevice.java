@@ -1,5 +1,6 @@
 package com.ethan.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -30,8 +31,8 @@ public class FcDevice extends BaseEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "device_name", length = 50)
-    private String deviceName;
+    @Column(name = "device_Serial_No", length = 50)
+    private String deviceSerialNo;
 
     @Column(name = "device_description", length = 500)
     private String deviceDescription;

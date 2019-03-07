@@ -28,5 +28,7 @@ public class JwtAuthenticationRequest implements Serializable {
     @NotEmpty
     private String password;
     @NotEmpty
+    private String confirmPassword;
+    @NotEmpty
     private String code;
 }

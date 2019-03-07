@@ -5,8 +5,10 @@
  */
 package com.ethan.core.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,10 +26,12 @@ import java.util.List;
 @Table(name = "fc_users")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "username", length = 50, unique = true)
