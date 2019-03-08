@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -46,4 +48,6 @@ public class FcApplication {
     @Enumerated(EnumType.STRING)
     private AppTypeEnum appType;
 
+    @Transient
+    private List<FcHostControl> hostControls;
 }

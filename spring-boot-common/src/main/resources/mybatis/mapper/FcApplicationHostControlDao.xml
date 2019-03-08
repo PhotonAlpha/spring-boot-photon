@@ -58,19 +58,24 @@
     </update>
 
 <!--auto generated Code-->
-    <select id="select" resultMap="AllColumnMap">
+    <select id="getByAppId" resultMap="AllColumnMap">
         SELECT <include refid="all_column"/>
         FROM fc_application_host_control
         <where>
-            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
-            <if test="pojo.appId != null"> AND app_id = #{pojo.appId} </if>
-            <if test="pojo.hostControlId != null"> AND host_control_id = #{pojo.hostControlId} </if>
+            AND app_id = #{pojo.appId}
         </where>
-        LIMIT 1000 
     </select>
 
 <!--auto generated Code-->
     <delete id="delete">
         DELETE FROM fc_application_host_control where id = #{id}
+    </delete>
+
+    <!--auto generated Code-->
+    <delete id="deleteList" parameterType="list">
+        DELETE FROM fc_application_host_control where id in
+        <foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+          #{item}
+        </foreach>
     </delete>
 </mapper>

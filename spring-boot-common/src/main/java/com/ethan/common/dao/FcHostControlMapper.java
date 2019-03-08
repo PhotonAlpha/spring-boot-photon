@@ -10,8 +10,10 @@ public interface FcHostControlMapper {
 
     int insertList(@Param("pojos") List< FcHostControl> pojo);
 
-    List<FcHostControl> select(@Param("pojo") FcHostControl pojo);
+    List<FcHostControl> getHostListByDeviceId(@Param("deviceId") Long deviceId);
 
     int update(@Param("pojo") FcHostControl pojo);
+
+    int delete(@Param("id") Long id);
 
 }

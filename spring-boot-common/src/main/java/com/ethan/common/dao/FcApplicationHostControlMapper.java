@@ -10,8 +10,11 @@ public interface FcApplicationHostControlMapper {
 
     int insertList(@Param("pojos") List< FcApplicationHostControl> pojo);
 
-    List<FcApplicationHostControl> select(@Param("pojo") FcApplicationHostControl pojo);
+    List<FcApplicationHostControl> getByAppId(@Param("appId") Long appId);
 
     int update(@Param("pojo") FcApplicationHostControl pojo);
 
+    int delete(@Param("id") Long id);
+
+    int deleteList(@Param("ids") List<Long> ids);
 }

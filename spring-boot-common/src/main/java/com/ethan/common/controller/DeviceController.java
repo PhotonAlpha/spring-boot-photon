@@ -5,7 +5,9 @@ import com.ethan.common.model.dto.request.FcDeviceRequestDto;
 import com.ethan.common.model.dto.response.SimpleResponse;
 import com.ethan.common.service.FcDeviceService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,7 @@ public class DeviceController extends BasicController {
     private FcDeviceService deviceService;
 
     @GetMapping(value = "/devices")
+    @ApiOperation(value="Returns getDeviceList", produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List> getDeviceList() {
         Long userid = 1L;
         List<FcDevice> result = deviceService.findByUserId(userid);

@@ -10,8 +10,9 @@ public interface FcApplicationMapper {
 
     int insertList(@Param("pojos") List< FcApplication> pojo);
 
-    List<FcApplication> select(@Param("pojo") FcApplication pojo);
+    List<FcApplication> selectByDeviceId(@Param("deviceId") Long deviceId);
 
     int update(@Param("pojo") FcApplication pojo);
 
+    int delete(@Param("id") Long id);
 }

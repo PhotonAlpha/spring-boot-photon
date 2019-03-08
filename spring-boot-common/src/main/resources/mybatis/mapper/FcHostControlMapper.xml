@@ -64,16 +64,12 @@
     </update>
 
 <!--auto generated Code-->
-    <select id="select" resultMap="AllColumnMap">
+    <select id="getHostListByDeviceId" resultMap="AllColumnMap">
         SELECT <include refid="all_column"/>
         FROM fc_host_control
         <where>
-            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
             <if test="pojo.deviceId != null"> AND device_id = #{pojo.deviceId} </if>
-            <if test="pojo.hostName != null"> AND host_name = #{pojo.hostName} </if>
-            <if test="pojo.hostAddress != null"> AND host_address = #{pojo.hostAddress} </if>
         </where>
-        LIMIT 1000 
     </select>
 
 <!--auto generated Code-->

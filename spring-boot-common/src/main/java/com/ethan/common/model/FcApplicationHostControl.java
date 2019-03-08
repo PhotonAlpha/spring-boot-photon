@@ -1,6 +1,9 @@
 package com.ethan.common.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -18,6 +21,9 @@ import javax.persistence.Table;
 @Table(name = "fc_app_host_control")
 @Data
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FcApplicationHostControl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

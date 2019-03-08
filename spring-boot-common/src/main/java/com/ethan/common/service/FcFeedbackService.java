@@ -2,6 +2,8 @@ package com.ethan.common.service;
 
 import com.ethan.common.dao.FcFeedbackMapper;
 import com.ethan.common.model.FcFeedback;
+import com.ethan.common.model.dto.request.FcFeedbackRequestDto;
+import com.ethan.core.providers.TimeProvider;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,8 +14,13 @@ public class FcFeedbackService {
     @Resource
     private FcFeedbackMapper fcFeedbackDao;
 
-    public int insert(FcFeedback pojo){
-        return fcFeedbackDao.insert(pojo);
+    public int insert(FcFeedbackRequestDto dto, Long userId){
+        FcFeedback feedback = new FcFeedback();
+        feedback.setUserId(userId);
+        feedback.setFeedback(dto.getFeedback());
+        feedback.setCreateDate(TimeProvider.now());
+
+        return fcFeedbackDao.insert(feedback);
     }
 
     public int insertList(List< FcFeedback> pojos){
