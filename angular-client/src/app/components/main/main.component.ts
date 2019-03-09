@@ -1,4 +1,4 @@
-import { CanDeactivate } from '@angular/router';
+import { CanDeactivate, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -21,7 +21,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
     theamClassName: string;
     options: FormGroup;
-    constructor(fb: FormBuilder) {
+    constructor(fb: FormBuilder, private router: Router) {
         this.options = fb.group({
             hideRequired: false,
             floatLabel: 'auto',
@@ -35,6 +35,11 @@ export class MainComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         console.log('ngOnDestroy');
     }
+
+    addDevice() {
+        this.router.navigate(['/main/dashboard/device/add']);
+    }
+
 
     lightTheam() {
         this.theamClassName = '';

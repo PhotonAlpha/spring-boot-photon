@@ -12,16 +12,21 @@
             <mat-card-actions>
                 <div class="d-flex justify-content-between text-center skeleton pl-3 pr-3 " >
                     <div [routerLink]="['/main/dashboard/applications']" >
-                        <fa-icon  routerLinkActive="router-link-active"  mat-icon-button size="2x" [icon]='icons.shop' ></fa-icon><span>应用</span>
+                        <img src="assets/imgs/1.png" alt="application">
+                        <span>应用</span>
                     </div>
                     <div [routerLink]="['/main/dashboard/host-control']" >
-                        <fa-icon mat-icon-button size="2x" [icon]='icons.earth' ></fa-icon><span>上网管理</span>
+                        <img src="assets/imgs/2.png" alt="host">
+                        <span>上网管理</span>
                     </div>
                     <div [routerLink]="['/main/dashboard/status']" >
-                        <fa-icon mat-icon-button size="2x" [icon]='icons.clock' ></fa-icon><span>使用情况</span>
+                        <img src="assets/imgs/3.png" alt="status">
+                        <span>使用情况</span>
                     </div>
                     <div [routerLink]="['/main/dashboard/config']" >
-                        <fa-icon mat-icon-button size="2x" [icon]='icons.cog' spin="true" ></fa-icon><span>设置</span>
+                        <!-- <fa-icon mat-icon-button size="2x" [icon]='icons.cog' spin="true" ></fa-icon> -->
+                        <img src="assets/imgs/4.png" alt="config">
+                        <span>设置</span>
                     </div>
                 </div>
                 

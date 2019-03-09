@@ -1,0 +1,11 @@
+#device-modify {
+    ::ng-deep .mat-card {
+        width: 100%;
+    }
+    mat-form-field.mat-form-field {
+        font-size: 16px;
+    }
+    .btn-frame {
+        width: 80%;
+    }
+}

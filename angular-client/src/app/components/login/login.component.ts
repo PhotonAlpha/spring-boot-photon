@@ -15,11 +15,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
 
-    icons = {
-
-    }
-
-
     loading = false;
     totalCount = 0;
     currPage = 1;

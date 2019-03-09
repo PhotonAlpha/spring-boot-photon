@@ -1,3 +1,4 @@
+import { DeviceModifyComponent } from './../components/main/dashboard/device/device-modify/device-modify.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardPortalComponent } from 'src/app/components/main/dashboard/dashboard-portal.component';
@@ -13,10 +14,11 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'device', pathMatch: 'full' },
             { path: 'device', component: DeviceComponent },
+            { path: 'device/add', component: DeviceModifyComponent },
             { path: 'applications', component: DeviceAppComponent },
             { path: 'status', component: StatusComponent },
             { path: 'config', component: ConfigComponent },
-            { path: 'host-control', component: HostControlComponent },
+            { path: 'host-contril', component: HostControlComponent },
         ]
     }
 ];

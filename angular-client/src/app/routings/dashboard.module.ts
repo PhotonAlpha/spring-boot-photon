@@ -8,6 +8,7 @@ import { DeviceAppComponent } from '../components/main/dashboard/application/dev
 import { HostControlComponent } from '../components/main/dashboard/host-control/host-control.component';
 import { ConfigComponent } from '../components/main/dashboard/config/config.component';
 import { StatusComponent } from '../components/main/dashboard/status/status.component';
+import { DeviceModifyComponent } from '../components/main/dashboard/device/device-modify/device-modify.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { StatusComponent } from '../components/main/dashboard/status/status.comp
         DeviceAppComponent,
         HostControlComponent,
         ConfigComponent,
-        StatusComponent
+        StatusComponent,
+        DeviceModifyComponent
     ],
     imports: [
         ShareModule,
