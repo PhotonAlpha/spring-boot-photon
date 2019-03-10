@@ -1,0 +1,9 @@
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">message</label>
+      <input type="email" class="form-control" placeholder="Enter email" name="message" [(ngModel)]="message" >
+    </div>
+    <button (click)="sendMessage()" class="btn btn-primary">Submit</button>
+
+    Response: {{ messageBody }}
+</form>

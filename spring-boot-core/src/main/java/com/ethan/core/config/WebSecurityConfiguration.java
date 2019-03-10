@@ -5,9 +5,9 @@
  */
 package com.ethan.core.config;
 
+import com.ethan.core.providers.CustomAuthenticationProvider;
 import com.ethan.core.security.UnAuthenticationEntryPoint;
 import com.ethan.core.security.jwt.JwtAuthenticationTokenFilter;
-import com.ethan.core.providers.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -70,9 +69,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     "/**/*.css",
                     "/**/*.js").permitAll()
             .antMatchers("/api/auth").permitAll()
-            .antMatchers("/api/register").permitAll()
-            .antMatchers("/api/verify/**").permitAll()
-            .antMatchers("/v1/booklet/**").permitAll()
+            .antMatchers("/socket/**").permitAll()
             .antMatchers("/h2-console/**").permitAll()
             .antMatchers(AUTH_WHITELIST).permitAll()
             .anyRequest().authenticated();

@@ -86,8 +86,6 @@
         SELECT <include refid="all_column"/>
         FROM fc_application device_id = #{deviceId}
     </select>
-    
-    <select id="selectByHost"
 
 <!--auto generated Code-->
     <delete id="delete">

@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { ModifyPwdComponent } from '../components/main/profile/modify-pwd/modify-pwd.component';
 import { ModifyNoComponent } from '../components/main/profile/modify-no/modify-no.component';
 import { ProfileViewComponent } from '../components/main/profile/profile-view/profile-view.component';
+import { WebsocketLoginComponent } from '../components/main/profile/websocket-login/websocket-login.component';
 
 @NgModule({
     declarations: [
         ProfilePortalComponent,
         ModifyPwdComponent,
         ModifyNoComponent,
-        ProfileViewComponent
+        ProfileViewComponent,
+        WebsocketLoginComponent,
     ],
     imports: [
         ShareModule,

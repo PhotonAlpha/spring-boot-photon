@@ -21,7 +21,7 @@ public class FcApplicationHostControlService {
     }
 
     public List<FcApplicationHostControl> select(FcApplicationHostControl pojo){
-        return fcApplicationHostControlDao.select(pojo);
+        return fcApplicationHostControlDao.getByAppId(pojo.getId());
     }
 
     public int update(FcApplicationHostControl pojo){
