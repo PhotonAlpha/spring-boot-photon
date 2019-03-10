@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faMobileAlt, faShoppingCart, faGlobe, faCog, faClock } from '@fortawesome/free-solid-svg-icons';
+import { MenuHeader } from 'src/app/models/menu-header';
+import { SharedService } from 'src/app/service/shared.service';
  
 @Component({
     selector: 'app-device',
@@ -15,9 +17,21 @@ export class DeviceComponent implements OnInit {
         'clock': faClock
     };
 
-    constructor() { }
+    @Output() menu = new EventEmitter<MenuHeader>();
 
-    ngOnInit(): void { }
+    constructor(private _sharedService: SharedService) {
+        console.log('DeviceComponent');
+        const header = new MenuHeader();
+        header.avatar = 'avatar';
+        header.title = '我的设备';
+        header.currentUrl = '/main/dashboard/device';
+        this._sharedService.emitMenuHeaderChange(header);
+    }
+
+    ngOnInit(): void {
+
+
+    }
 
 
 

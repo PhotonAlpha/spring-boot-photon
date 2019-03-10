@@ -20,6 +20,7 @@ import { MessageSubscriptionComponent } from './components/message/message-subsc
 import { MainComponent } from 'src/app/components/main/main.component';
 import { ShareModule } from './routings/share.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SharedService } from './service/shared.service';
 
 
 
@@ -49,6 +50,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   providers: [
     LoginService,
+    SharedService,
     PortalDeactiveGuard,
     {
       provide: HTTP_INTERCEPTORS,

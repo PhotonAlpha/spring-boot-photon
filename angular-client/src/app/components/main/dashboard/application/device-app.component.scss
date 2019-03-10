@@ -1,0 +1,28 @@
+#device-app {
+    .skeleton-frame {
+        width: 100%;
+        .input-group-text {
+            background-color: transparent;
+        }
+        .input-0-text {
+            border-radius: 0rem 0.5rem 0.5rem 0rem;
+            border-width: 1px 1px 1px 0px;
+        }
+        mat-card {
+            padding: 0px;
+        }
+    }
+    .media img {
+        width: 64px;
+    }
+    .media button {
+        border-radius: 20px;
+        width: 6rem;
+    }
+    mat-card {
+        box-shadow: unset;
+    }
+    mat-card-content {
+        background-color: transparent;
+    }
+}

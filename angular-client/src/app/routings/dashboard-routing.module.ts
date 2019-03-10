@@ -7,6 +7,7 @@ import { DeviceAppComponent } from '../components/main/dashboard/application/dev
 import { StatusComponent } from '../components/main/dashboard/status/status.component';
 import { ConfigComponent } from '../components/main/dashboard/config/config.component';
 import { HostControlComponent } from '../components/main/dashboard/host-control/host-control.component';
+import { ApplicationViewComponent } from '../components/main/dashboard/application/application-view/application-view.component';
 
 const routes: Routes = [
     {
@@ -16,9 +17,10 @@ const routes: Routes = [
             { path: 'device', component: DeviceComponent },
             { path: 'device/add', component: DeviceModifyComponent },
             { path: 'applications', component: DeviceAppComponent },
+            { path: 'application/view', component: ApplicationViewComponent },
             { path: 'status', component: StatusComponent },
             { path: 'config', component: ConfigComponent },
-            { path: 'host-contril', component: HostControlComponent },
+            { path: 'host-control', component: HostControlComponent },
         ]
     }
 ];

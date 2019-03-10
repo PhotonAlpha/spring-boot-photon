@@ -1,0 +1,17 @@
+#host-control {
+    mat-card {
+        margin: 5px -15px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    mat-card-content {
+        padding: 0px;
+    }
+    .media img {
+        width: 64px;
+    }
+    .media button {
+        border-radius: 20px;
+        width: 6rem;
+    }
+}

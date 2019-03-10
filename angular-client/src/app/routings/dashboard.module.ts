@@ -9,6 +9,7 @@ import { HostControlComponent } from '../components/main/dashboard/host-control/
 import { ConfigComponent } from '../components/main/dashboard/config/config.component';
 import { StatusComponent } from '../components/main/dashboard/status/status.component';
 import { DeviceModifyComponent } from '../components/main/dashboard/device/device-modify/device-modify.component';
+import { ApplicationViewComponent } from '../components/main/dashboard/application/application-view/application-view.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { DeviceModifyComponent } from '../components/main/dashboard/device/devic
         HostControlComponent,
         ConfigComponent,
         StatusComponent,
-        DeviceModifyComponent
+        DeviceModifyComponent,
+        ApplicationViewComponent
     ],
     imports: [
         ShareModule,

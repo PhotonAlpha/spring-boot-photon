@@ -1,2 +1,57 @@
-<h1>host control</h1>
-<div [routerLink]="['/main']" >返回</div>
+<div id="host-control">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                上网白名单
+                <a href="#" [routerLink]="['/main/dashboard/application/view']" style="float: right;" >
+                    <fa-layers fixedWidth="true">
+                        <fa-icon [icon]="icons.circle"></fa-icon>
+                        <fa-icon [icon]="icons.plus" transform="shrink-6"></fa-icon>
+                    </fa-layers>
+                    添加
+                </a>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">网址1：https://free.modao.cc/app/fMEVjbdtkMuuhbGTDPrhIdfhZ1f14T3#screen=s16CC40F5831551365886409</li>
+                <li class="list-group-item">网址2：https://free.modao.cc/app/fMEVjbdtkMuuhbGTDPrhIdfhZ1f14T3#screen=s16CC40F5831551365886409</li>
+                <li class="list-group-item">网址3：https://free.modao.cc/app/fMEVjbdtkMuuhbGTDPrhIdfhZ1f14T3#screen=s16CC40F5831551365886409</li>
+                <li class="list-group-item">网址4：https://free.modao.cc/app/fMEVjbdtkMuuhbGTDPrhIdfhZ1f14T3#screen=s16CC40F5831551365886409</li>
+                <li class="list-group-item">网址5：https://free.modao.cc/app/fMEVjbdtkMuuhbGTDPrhIdfhZ1f14T3#screen=s16CC40F5831551365886409</li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                APP上网管理
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="media align-items-center">
+                        <img src="assets/imgs/1.png" class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0">微信</h5>
+                        </div>
+                        <mat-slide-toggle color="primary" [checked]="checked">
+
+                        </mat-slide-toggle>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="media align-items-center">
+                        <img src="assets/imgs/1.png" class="mr-3" alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0">微信</h5>
+                        </div>
+                        <mat-slide-toggle></mat-slide-toggle>
+                    </div>
+                </li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+</div>
