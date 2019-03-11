@@ -15,7 +15,7 @@ function setConnected(connected) {
 function connect() {
     var socket = new SockJS('http://localhost:8080/socket');
     stompClient = Stomp.over(socket);
-    stompClient.connect({"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTQ4MzE2Mi1jNTQ3LTQzN2QtOTY3NC0wNWFmODQ1ODI5MzEiLCJhdWQiOiJ3ZWIiLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE1NTI4NzU1NzIsImlhdCI6MTU1MjI3NTU3Mn0.FY92zBBSf14ZrRUb8I90QKN0lix9jAGp18jCnFpTwyR3oYBkFJ3QjxClPLKw35MP-Uuhj4r2JVAoY4esYv6PHQ"}, function (frame) {
+    stompClient.connect({"token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTQ4MzE2Mi1jNTQ3LTQzN2QtOTY3NC0wNWFmODQ1ODI5MzEiLCJhdWQiOiJ3ZWIiLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE1NTI4NzU1NzIsImlhdCI6MTU1MjI3NTU3Mn0.FY92zBBSf14ZrRUb8I90QKN0lix9jAGp18jCnFpTwyR3oYBkFJ3QjxClPLKw35MP-Uuhj4r2JVAoY4esYv6PHQ"}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/messages', function (greeting) {
@@ -34,7 +34,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/chat", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/app/connect/device", {}, JSON.stringify({'name': $("#name").val()}));
 }
 
 function showGreeting(message) {

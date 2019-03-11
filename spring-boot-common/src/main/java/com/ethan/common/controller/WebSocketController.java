@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -41,6 +42,24 @@ public class WebSocketController {
         String result = mapper.writeValueAsString(mess);
 
         log.info("from {} text {}", message.getHeaders(), message.getPayload());
+
+        return result;
+    }
+
+    @MessageMapping("/connect/{deviceId}")
+    @SendTo("/topic/messages")
+    public String send(@DestinationVariable("deviceId") String deviceId, Message message) throws Exception {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        ObjectMapper mapper = new ObjectMapper();
+        WSOutPutMessage mess = WSOutPutMessage.builder()
+                .header(now.format(formatter))
+                .body(deviceId)
+                .title("message")
+                .success(true).build();
+        String result = mapper.writeValueAsString(mess);
+
+        log.info("from {} text {} deviceId {}", message.getHeaders(), message.getPayload(), deviceId);
 
         return result;
     }
