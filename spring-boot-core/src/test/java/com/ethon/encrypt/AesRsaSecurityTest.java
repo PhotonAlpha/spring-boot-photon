@@ -7,7 +7,11 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.crypto.BadPaddingException;
@@ -21,6 +25,7 @@ import javax.crypto.spec.PBEParameterSpec;
 
 import com.ethan.core.constant.ConfigsEnum;
 import com.ethan.core.model.AuthorityName;
+import com.ethan.core.providers.TimeProvider;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.encoders.Hex;
 import org.jasypt.encryption.StringEncryptor;
@@ -44,7 +49,13 @@ public class AesRsaSecurityTest {
 
     @Test
     public void str() {
-        System.out.println(AuthorityName.ROLE_USER.name());
+        // String pwd = TimeProvider.passwordEncoder().encode("123456");
+        // System.out.println(pwd);
+        // boolean match = TimeProvider.passwordEncoder().matches("123456", pwd);
+        // System.out.println(match);
+        List lists = null;
+        Optional<String> token = Optional.ofNullable(lists).orElse(Collections.emptyList()).stream().findFirst();
+        System.out.println("str():-->" +token.isPresent());
     }
 
     @Test

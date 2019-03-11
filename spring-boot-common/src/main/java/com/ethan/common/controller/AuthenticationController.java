@@ -50,13 +50,9 @@ public class AuthenticationController {
     private JwtTokenUtils jwtTokenUtil;
 
     @GetMapping(value = "/verify/{mobileNo}")
-    public ResponseEntity<SimpleResponse> smsVerify(@PathVariable("mobileNo") String mobileNo, Device device) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(mobileNo);
-        if (userDetails != null) {
-            String code = userService.preVerifyCode(mobileNo, device);
-            return ResponseEntity.ok(new SimpleResponse(true, code));
-        }
-        return ResponseEntity.badRequest().body(new SimpleResponse(false, "code may expired."));
+    public ResponseEntity<SimpleResponse> smsVerify(@PathVariable("mobileNo") String mobileNo, Device device) throws Exception {
+        String code = userService.preVerifyCode(mobileNo, device);
+        return ResponseEntity.ok(new SimpleResponse(true, code));
     }
 
     @PostMapping(value = "/register")

@@ -62,19 +62,25 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public String preVerifyCode(String mobileNo, Device device) {
+    public String preVerifyCode(String mobileNo, Device device) throws Exception {
         String code = TimeProvider.digitalGenerator6();
         log.info("generated code {} {}", code);
+
         String token = jwtTokenUtil.generateTempToken(code, device);
 
-        Users user = userDao.findByMobileNo(mobileNo);
-        if (user != null) {
-            user.setMobileCode(token);
-            userDao.save(user);
-            return code;
-        } else {
-            throw new UsernameNotFoundException(String.format("未注册，请先注册 '%s'.", mobileNo));
+        Date now =TimeProvider.now();
+        Authoritys auth = authoritiesDao.findByName(AuthorityName.ROLE_USER);
+        if (auth == null) {
+            throw new Exception("未知错误。");
         }
+        auth.setUsers(null);
+
+        Users newUser = Users.builder().username(TimeProvider.getUUID()).enabled(true)
+                .mobileNo(mobileNo).mobileCode(token)
+                .createTime(now).updateTime(now)
+                .authorities(Arrays.asList(auth)).build();
+        userDao.save(newUser);
+        return code;
     }
 
     @Override
@@ -82,19 +88,29 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public Users register(JwtAuthenticationRequest request, Device device) throws Exception {
         String code = request.getCode();
         log.info("generated code {} {}", code);
-        String token = jwtTokenUtil.generateTempToken(code, device);
-        Date now =TimeProvider.now();
-        Authoritys auth = authoritiesDao.findByName(AuthorityName.ROLE_USER);
-        auth.setUsers(null);
-        if (auth == null) {
-            throw new Exception("未知错误。");
+        // 1. verify password match
+        if (!request.getPassword().equals(request.getConfirmPassword())) {
+            throw new Exception("密码不匹配。");
         }
+        Users users = userDao.findByMobileNo(request.getUsername());
+        if (users == null) {
+            throw new Exception("用户不存在，请先注册。");
+        }
+        try {
+            String tokenCode = jwtTokenUtil.getUsernameFromToken(users.getMobileCode());
+            if (!code.equals(tokenCode)) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception("验证码错误或者过期。");
+        }
+        Date now =TimeProvider.now();
+        String password = TimeProvider.passwordEncoder().encode(request.getPassword());
+        users.setPassword(password);
+        users.setUpdateTime(now);
+        users.setLoginTime(now);
 
-        Users newUser = Users.builder().username(TimeProvider.getUUID()).password(request.getPassword()).enabled(true)
-                .mobileNo(request.getUsername()).mobileCode(token)
-                .loginTime(now).createTime(now).updateTime(now)
-                .authorities(Arrays.asList(auth)).build();
-        userDao.save(newUser);
-        return newUser;
+        userDao.save(users);
+        return users;
     }
 }

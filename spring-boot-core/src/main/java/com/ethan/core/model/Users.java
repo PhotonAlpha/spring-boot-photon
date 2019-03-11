@@ -59,7 +59,6 @@ public class Users {
 
     @Column(name = "login_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     private Date loginTime;
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)

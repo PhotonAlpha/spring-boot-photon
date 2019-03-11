@@ -8,10 +8,13 @@ package com.ethan.core.config;
 
 import com.ethan.core.providers.AuthChannelInterceptorAdapter;
 import com.ethan.core.providers.WebSocketAuthenticatorService;
+import com.ethan.core.security.jwt.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.security.config.annotation.web.messaging.MessageSecurityMetadataSourceRegistry;
@@ -27,6 +30,11 @@ import static org.springframework.messaging.simp.SimpMessageType.*;
 public class WebSocketConfiguration extends AbstractSecurityWebSocketMessageBrokerConfigurer {
     @Autowired
     private WebSocketAuthenticatorService webSocketAuthenticatorService;
+    @Autowired
+    private JwtTokenUtils jwtTokenUtil;
+    @Autowired
+    @Qualifier("clientOutboundChannel")
+    private MessageChannel clientOutboundChannel;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -57,6 +65,6 @@ public class WebSocketConfiguration extends AbstractSecurityWebSocketMessageBrok
 
     @Override
     protected void customizeClientInboundChannel(ChannelRegistration registration) {
-        registration.setInterceptors(new AuthChannelInterceptorAdapter(this.webSocketAuthenticatorService));
+        registration.interceptors(new AuthChannelInterceptorAdapter(this.webSocketAuthenticatorService, this.jwtTokenUtil, this.clientOutboundChannel));
     }
 }

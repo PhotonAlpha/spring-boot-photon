@@ -20,7 +20,7 @@ public interface UserService<T> {
      */
     List<T> getUsers();
 
-    String preVerifyCode(String mobileNo, Device device);
+    String preVerifyCode(String mobileNo, Device device) throws Exception;
 
     Users register(JwtAuthenticationRequest request, Device device) throws Exception;
 }

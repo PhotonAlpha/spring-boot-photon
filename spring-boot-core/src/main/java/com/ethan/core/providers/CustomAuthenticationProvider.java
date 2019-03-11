@@ -41,16 +41,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final String mobileNo = authentication.getName();
-        final String mobileCode = authentication.getCredentials().toString();
+        final String password = authentication.getCredentials().toString();
         // logger.info("Authenticating for user: {} with password: {}", name, password);
 
         final UserDetails userDetails = userService.loadUserByUsername(mobileNo);
 
-        String subject = jwtTokenUtil.getUsernameFromToken(((JwtUser) userDetails).getMobileCode());
-
-        // if (userDetails == null || !matchPassword(password, userDetails.getPassword())) {
-        if (userDetails == null || !mobileCode.equals(subject)) {
-            throw new BadCredentialsException("验证码过期，请重新发送验证码。");
+        if (userDetails == null || !matchPassword(password, userDetails.getPassword())) {
+        // if (userDetails == null || !mobileCode.equals(subject)) {
+            throw new BadCredentialsException("密码错误。");
         }
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }

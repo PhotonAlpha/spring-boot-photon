@@ -42,7 +42,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**",
             "/swagger-ui.html",
             "/v2/api-docs",
-            "/webjars/**"
+            "/webjars/**",
+            "/api/auth",
+            "/api/register",
+            "/api/verify/**"
     };
     @Autowired
     private UnAuthenticationEntryPoint unAuthenticationEntryPoint;
@@ -68,7 +71,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     "/**/*.{png,jpg,jpeg,svg.ico}",
                     "/**/*.css",
                     "/**/*.js").permitAll()
-            .antMatchers("/api/auth").permitAll()
             .antMatchers("/socket/**").permitAll()
             .antMatchers("/h2-console/**").permitAll()
             .antMatchers(AUTH_WHITELIST).permitAll()
