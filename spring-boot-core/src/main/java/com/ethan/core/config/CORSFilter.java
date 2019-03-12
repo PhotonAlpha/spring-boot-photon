@@ -28,9 +28,9 @@ public class CORSFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        log.info("---------CORSFilter");
 // Lets make sure that we are working with HTTP (that is, against HttpServletRequest and HttpServletResponse objects)
         if (req instanceof HttpServletRequest && res instanceof HttpServletResponse) {
+            log.info("---------CORSFilter");
             HttpServletRequest request = (HttpServletRequest) req;
             HttpServletResponse response = (HttpServletResponse) res;
 
