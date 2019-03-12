@@ -17,8 +17,11 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -47,8 +50,10 @@ public class WebSocketController {
     }
 
     @MessageMapping("/connect/{deviceId}")
-    @SendTo("/topic/messages")
-    public String send(@DestinationVariable("deviceId") String deviceId, Message message) throws Exception {
+    public void send(@DestinationVariable("deviceId") String deviceId, Message message) throws Exception {
+        final StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
+        Principal user = accessor.getUser();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         ObjectMapper mapper = new ObjectMapper();
@@ -60,8 +65,7 @@ public class WebSocketController {
         String result = mapper.writeValueAsString(mess);
 
         log.info("from {} text {} deviceId {}", message.getHeaders(), message.getPayload(), deviceId);
-
-        return result;
+        template.convertAndSendToUser(deviceId, "/queue/reply", mess);
     }
 
     @MessageExceptionHandler
