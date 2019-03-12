@@ -12,3 +12,4 @@ spring-boot-common/target/
 spring-boot-core/target/
 
 \.idea/
+/.settings/

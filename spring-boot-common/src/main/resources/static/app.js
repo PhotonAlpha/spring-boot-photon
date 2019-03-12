@@ -18,7 +18,7 @@ function connect() {
     stompClient.connect({"token": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTQ4MzE2Mi1jNTQ3LTQzN2QtOTY3NC0wNWFmODQ1ODI5MzEiLCJhdWQiOiJ3ZWIiLCJyb2xlIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE1NTI4NzU1NzIsImlhdCI6MTU1MjI3NTU3Mn0.FY92zBBSf14ZrRUb8I90QKN0lix9jAGp18jCnFpTwyR3oYBkFJ3QjxClPLKw35MP-Uuhj4r2JVAoY4esYv6PHQ"}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/user/messages', function (greeting) {
+        stompClient.subscribe('/user/queue/reply', function (greeting) {
             console.log('response: ' + greeting);
             showGreeting(JSON.parse(greeting.body).body);
         });
@@ -34,7 +34,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/connect/device", {}, JSON.stringify({'name': $("#name").val()}));
+    stompClient.send("/app/connect", {}, JSON.stringify({'name': 'xiaoming'}));
 }
 
 function showGreeting(message) {

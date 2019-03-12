@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -49,8 +48,8 @@ public class WebSocketController {
         return result;
     }
 
-    @MessageMapping("/connect/{deviceId}")
-    public void send(@DestinationVariable("deviceId") String deviceId, Message message) throws Exception {
+    @MessageMapping("/connect")
+    public void sendRequest(Message message, String textMessage) throws Exception {
         final StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
         Principal user = accessor.getUser();
 
@@ -59,13 +58,13 @@ public class WebSocketController {
         ObjectMapper mapper = new ObjectMapper();
         WSOutPutMessage mess = WSOutPutMessage.builder()
                 .header(now.format(formatter))
-                .body(deviceId)
+                .body(user.getName())
                 .title("message")
                 .success(true).build();
         String result = mapper.writeValueAsString(mess);
 
-        log.info("from {} text {} deviceId {}", message.getHeaders(), message.getPayload(), deviceId);
-        template.convertAndSendToUser(deviceId, "/queue/reply", mess);
+        log.info("from {} text {} username {}", message.getHeaders(), message.getPayload(), user.getName());
+        template.convertAndSendToUser(user.getName(), "/queue/reply", mess);
     }
 
     @MessageExceptionHandler
