@@ -5,6 +5,7 @@
  */
 package com.ethan.core.security.jwt;
 
+import io.jsonwebtoken.Jwt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             UserDetails userDetails = userService.loadUserByUsername(username);
             // For simple validation it is completely sufficient to just check the token integrity. You don't have to call
             if(tokenUtils.validateToken(authToken, userDetails)) {
-                final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                JwtUser jwtUser = ((JwtUser) userDetails);
+                jwtUser.setUsername(jwtUser.getMobileNo());
+                final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(jwtUser, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 logger.info("authenticated user " + username + ", setting security context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);

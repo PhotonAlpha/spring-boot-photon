@@ -113,4 +113,24 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         userDao.save(users);
         return users;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public boolean updatePassword(JwtAuthenticationRequest request, Device device) throws Exception {
+        Date now =TimeProvider.now();
+        Users users = userDao.findByMobileNo(request.getUsername());
+        boolean matched = request.getPassword().equals(request.getConfirmPassword());
+        if (!matched) {
+            return matched;
+        }
+        matched = TimeProvider.passwordEncoder().matches(request.getOldPassword(), users.getPassword());
+        if (!matched) {
+            return matched;
+        }
+        String password = TimeProvider.passwordEncoder().encode(request.getPassword());
+        users.setPassword(password);
+        users.setUpdateTime(now);
+        userDao.save(users);
+        return true;
+    }
 }

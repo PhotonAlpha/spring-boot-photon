@@ -42,7 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         final String mobileNo = authentication.getName();
         final String password = authentication.getCredentials().toString();
-        // logger.info("Authenticating for user: {} with password: {}", name, password);
+        logger.info("Authenticating for user: {} with password: {}", mobileNo, password);
 
         final UserDetails userDetails = userService.loadUserByUsername(mobileNo);
 

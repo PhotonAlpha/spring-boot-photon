@@ -10,7 +10,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +30,9 @@ import java.util.stream.Collectors;
  **/
 @Component
 public class JwtTokenUtils {
+    {
+        this.secret = "VGhpcyBpcyBTZWNyZXQgU3Ry";
+    }
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_AUDIENCE = "aud";
     private static final String CLAIM_KEY_CREATED = "iat";
@@ -40,13 +42,16 @@ public class JwtTokenUtils {
     private static final String AUDIENCE_MOBILE = "mobile";
     private static final String AUDIENCE_TABLET = "tablet";
 
-    @Value("${jwt.secret}")
+    private static final String USER = "user";
+    private static final String ROLE = "role";
+
+
     private String secret;
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.expiration:86400}")
     private Long expiration;
 
-    @Value("${jwt.shortexpiration}")
+    @Value("${jwt.shortexpiration:180}")
     private Long shortExpiration;
 
     public <T>T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
@@ -58,6 +63,11 @@ public class JwtTokenUtils {
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
+    }
+
+    public String getUsers(String token) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claims.get(USER) == null ? "" : (String)claims.get(USER);
     }
 
     public String getUsernameFromToken(String token) {
@@ -119,27 +129,21 @@ public class JwtTokenUtils {
                 .compact();
     }
 
-    public String generateToken(UserDetails userDetails, Device device) {
+    public String generateWebToken(JwtUser userDetails, Device device) {
         Map<String, Object> claims = new HashMap<>();
-        final List<String> roles = userDetails.getAuthorities().stream().map(auth -> ((GrantedAuthority) auth).getAuthority())
+        final List<String> roles = userDetails.getAuthorities().stream().map(auth -> (auth).getAuthority())
                 .collect(Collectors.toList());
-        claims.put("role", roles);
-        return doGenerateToken(claims, userDetails.getUsername(), generateAudience(device));
+        claims.put(ROLE, roles);
+        claims.put(USER, userDetails.getUsername());
+        return doGenerateToken(claims, userDetails.getMobileNo(), generateAudience(device));
     }
-    public String generateRefreshToken(UserDetails userDetails, Device device) {
+    public String generateWebsocketToken(String deviceId, JwtUser userDetails, Device device) {
         Map<String, Object> claims = new HashMap<>();
-        final Date createdDate = now();
-        final LocalDateTime localTime = createdDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        LocalDateTime expirationTime = localTime.plusSeconds(expiration * 5);
-        final Date expirationDate = Date.from(expirationTime.atZone(ZoneId.systemDefault()).toInstant());
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(userDetails.getUsername())
-                .setAudience(generateAudience(device))
-                .setIssuedAt(createdDate)
-                .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.HS512, secret)
-                .compact();
+        final List<String> roles = userDetails.getAuthorities().stream().map(auth -> (auth).getAuthority())
+                .collect(Collectors.toList());
+        claims.put(ROLE, roles);
+        claims.put(USER, userDetails.getMobileNo());
+        return doGenerateToken(claims, deviceId, generateAudience(device));
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject, String audience) {
@@ -160,23 +164,12 @@ public class JwtTokenUtils {
         JwtUser user = (JwtUser) userDetails;
         final String username = getUsernameFromToken(token);
         // final Date createDate = getIssuedAtDateFromToken(token);
-        return (username.equals(user.getUsername())
+        return (username.equals(user.getMobileNo())
             && !isTokenExpired(token));
             // && !isCreatedBeforeLastPasswordReset(createDate, ((JwtUser) userDetails).getLastPasswordResetDate()));
     }
-    public boolean validateToken(String token, String username) {
-        final String tokenUserName = getUsernameFromToken(token);
-        return (tokenUserName.equals(username) && !isTokenExpired(token));
-    }
 
-
-    public boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
-        final Date createDate = getIssuedAtDateFromToken(token);
-        return !isCreatedBeforeLastPasswordReset(createDate, lastPasswordReset)
-                && (!isTokenExpired(token) || ignoreTokenExpiration(token));
-    }
     public boolean canTokenBeRefreshed(String token) {
-        final Date createDate = getIssuedAtDateFromToken(token);
         return !isTokenExpired(token);
     }
 

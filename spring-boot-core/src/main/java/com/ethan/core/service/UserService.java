@@ -23,4 +23,6 @@ public interface UserService<T> {
     String preVerifyCode(String mobileNo, Device device) throws Exception;
 
     Users register(JwtAuthenticationRequest request, Device device) throws Exception;
+
+    boolean updatePassword(JwtAuthenticationRequest request, Device device) throws Exception;
 }

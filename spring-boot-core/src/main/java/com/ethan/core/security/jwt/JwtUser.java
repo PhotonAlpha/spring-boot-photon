@@ -5,13 +5,10 @@
  */
 package com.ethan.core.security.jwt;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * @program: spring-boot
@@ -21,9 +18,9 @@ import java.util.Date;
  **/
 public class JwtUser implements UserDetails {
     private final Long id;
-    private final String username;
+    private String username;
     private final String password;
-    private final String mobileNo;
+    private String mobileNo;
     private final String mobileCode;
     private final Collection<? extends GrantedAuthority> authorities;
     private final boolean enabled;
@@ -48,6 +45,14 @@ public class JwtUser implements UserDetails {
 
     public String getMobileCode() {
         return mobileCode;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
     @Override

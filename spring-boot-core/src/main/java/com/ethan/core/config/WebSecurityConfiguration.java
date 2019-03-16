@@ -44,6 +44,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/v2/api-docs",
             "/webjars/**",
             "/api/auth",
+            "/api/login",
             "/api/register",
             "/api/verify/**"
     };
