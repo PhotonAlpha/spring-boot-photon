@@ -16,6 +16,7 @@ import com.ethan.core.security.jwt.JwtTokenUtils;
 import com.ethan.core.security.jwt.JwtUserFactory;
 import com.ethan.core.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -74,6 +75,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             throw new Exception("未知错误。");
         }
         auth.setUsers(null);
+        Users originData = userDao.findByMobileNo(mobileNo);
+        if(originData != null && StringUtils.isNotBlank(originData.getPassword())) {
+            throw new Exception("用户已注册，请登录。");
+        } else if(originData != null) {
+            // 用户已经发送code，但是验证码过期
+            originData.setMobileCode(token);
+            originData.setUpdateTime(now);
+            userDao.save(originData);
+            return code;
+        }
 
         Users newUser = Users.builder().username(TimeProvider.getUUID()).enabled(true)
                 .mobileNo(mobileNo).mobileCode(token)

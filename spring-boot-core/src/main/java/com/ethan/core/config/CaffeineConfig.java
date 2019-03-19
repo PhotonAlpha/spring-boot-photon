@@ -39,7 +39,7 @@ public class CaffeineConfig {
         return Caffeine.newBuilder()
                 .initialCapacity(100)
                 .maximumSize(200)
-                .expireAfterWrite(10, TimeUnit.MINUTES)
+                .expireAfterWrite(100, TimeUnit.MINUTES)
                 // .expireAfterAccess(1, TimeUnit.MINUTES)
                 // .weakKeys()
                 .weakValues()
