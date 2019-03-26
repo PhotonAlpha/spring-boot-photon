@@ -47,14 +47,14 @@
             <!--<scope>provided</scope>-->
         <!--</dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-        <dependency>
+        </dependency>-->
+        <!--<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-messaging</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,14 +77,14 @@
             <version>1.1.5.RELEASE</version>
         </dependency>
         <!--ldap dependency-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.ldap</groupId>
             <artifactId>spring-ldap-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-ldap</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

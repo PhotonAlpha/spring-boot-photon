@@ -1,3 +1,4 @@
+/*
 package com.ethan.core.providers;
 
 import org.springframework.security.config.annotation.web.messaging.MessageSecurityMetadataSourceRegistry;
@@ -18,3 +19,4 @@ public class WebSocketAuthorizationSecurityConfig extends AbstractSecurityWebSoc
         return true;
     }
 }
+*/

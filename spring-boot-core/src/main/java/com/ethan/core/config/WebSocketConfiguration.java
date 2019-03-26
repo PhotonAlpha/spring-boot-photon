@@ -4,7 +4,7 @@
  * @author xxx
  * @date 2019/03/10
  */
-package com.ethan.core.config;
+/*package com.ethan.core.config;
 
 import com.ethan.core.providers.AuthChannelInterceptorAdapter;
 import com.ethan.core.providers.WebSocketAuthenticatorService;
@@ -68,4 +68,4 @@ public class WebSocketConfiguration extends AbstractSecurityWebSocketMessageBrok
     protected void customizeClientInboundChannel(ChannelRegistration registration) {
         registration.interceptors(new AuthChannelInterceptorAdapter(this.webSocketAuthenticatorService, this.jwtTokenUtil, this.clientOutboundChannel));
     }
-}
+}*/
