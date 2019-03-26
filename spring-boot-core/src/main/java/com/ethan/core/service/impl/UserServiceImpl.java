@@ -18,12 +18,18 @@ import com.ethan.core.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -38,10 +44,14 @@ import java.util.List;
 @Slf4j
 @Service
 public class UserServiceImpl implements UserDetailsService, UserService {
+    @Value("${sms.address:http://comm.zxyq.com.cn:7080/yzm/yzm.aspx}")
+    private String smsAddr;
     @Autowired
     private UserDao userDao;
     @Autowired
     private AuthoritiesDao authoritiesDao;
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private JwtTokenUtils jwtTokenUtil;
@@ -66,7 +76,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public String preVerifyCode(String mobileNo, Device device) throws Exception {
         String code = TimeProvider.digitalGenerator6();
         log.info("generated code {} {}", code);
-
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(smsAddr)
+                .queryParam("code", code)
+                .queryParam("tplid", "2761560")
+                .queryParam("mobile", mobileNo);
+        ResponseEntity<String> result = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, new HttpEntity<>(""), String.class);
+        log.info("send result {}", result.getBody());
+        if (StringUtils.isEmpty(result.getBody()) || !result.getBody().equalsIgnoreCase("0")) {
+            throw new Exception("短信发送失败。");
+        }
         String token = jwtTokenUtil.generateTempToken(code, device);
 
         Date now =TimeProvider.now();

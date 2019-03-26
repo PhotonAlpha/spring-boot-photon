@@ -58,7 +58,7 @@ public class CacheTest {
         String res = id.toString();
         System.out.println(res);
         //if editable execute the shell command else get message form cache
-        Cache cache = cacheManager.getCache(ServiceConstant.CACHE_DIRECTORY);
+        Cache cache = cacheManager.getCache(ServiceConstant.DB_SERVICE);
         cache.put(res, "123");
         com.github.benmanes.caffeine.cache.Cache nativeCoffeeCache = (com.github.benmanes.caffeine.cache.Cache) cache.getNativeCache();
         System.out.println(nativeCoffeeCache.asMap().toString());

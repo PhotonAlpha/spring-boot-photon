@@ -14,7 +14,8 @@ package com.ethan.core.constant;
 public interface ServiceConstant {
     String DB_SERVICE = "dbUserImpl";
 
-    String CACHE_DIRECTORY = "directory";
-    String CACHE_THREAD = "threads";
     String CACHE_INSTRUMENT = "instruments";
+    String CACHE_DEVICE = "devices";
+    String CACHE_APP = "apps";
+    String CACHE_USER = "users";
 }

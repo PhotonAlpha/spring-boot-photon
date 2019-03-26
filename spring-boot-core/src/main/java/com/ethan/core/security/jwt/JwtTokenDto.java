@@ -5,6 +5,7 @@
  */
 package com.ethan.core.security.jwt;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JwtTokenDto {
     private String authToken;
     private String refreshToken;

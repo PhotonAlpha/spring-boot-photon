@@ -25,7 +25,7 @@ import java.util.List;
  * @creat_date: 2018-09-26 14:12
  **/
 @Service
-@CacheConfig(cacheNames = {ServiceConstant.CACHE_DIRECTORY})
+@CacheConfig(cacheNames = {ServiceConstant.DB_SERVICE})
 public class ConfigServiceImpl implements ConfigService {
     @Autowired
     private AppDictionaryMapper dictionaryMapper;

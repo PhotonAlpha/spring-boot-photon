@@ -29,7 +29,7 @@ public class CaffeineConfig {
     private final Logger logger = LoggerFactory.getLogger(CaffeineConfig.class);
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager manager = new CaffeineCacheManager(ServiceConstant.CACHE_DIRECTORY, ServiceConstant.CACHE_INSTRUMENT, ServiceConstant.CACHE_THREAD);
+        CaffeineCacheManager manager = new CaffeineCacheManager(ServiceConstant.CACHE_APP, ServiceConstant.CACHE_INSTRUMENT, ServiceConstant.CACHE_DEVICE, ServiceConstant.CACHE_USER);
         manager.setAllowNullValues(false);
         manager.setCaffeine(caffeineCacheBuilder());
         return manager;

@@ -33,6 +33,7 @@ public class AuthChannelInterceptorAdapter implements ChannelInterceptor {
         final StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);
         log.info("Websocket Auth------->{} {}", accessor.getCommand(), accessor.getUser());
         if (StompCommand.CONNECT == accessor.getCommand()) {
+            log.info("[head token]{}", accessor.getNativeHeader("token"));
             Optional<String> token = Optional.ofNullable(accessor.getNativeHeader("token")).orElse(Collections.emptyList()).stream().findFirst();
             if (token.isPresent() && token.get().startsWith("Bearer ")) {
                 authToken = token.get().substring(7);
