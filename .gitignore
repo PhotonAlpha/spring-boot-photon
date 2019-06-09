@@ -12,3 +12,5 @@ spring-boot-common/target/
 spring-boot-core/target/
 
 \.idea/
+
+angular-client/package-lock\.json
